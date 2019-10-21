@@ -7,6 +7,7 @@
 using namespace std;
 
 void copyStaticToDyn(int arr[30][30], vector<int>& dynVec) {
+	"Copies a 30x30 2-dimensional array(arr) to the passed vector(dynVec). Starts copying with the first element of the first list and continues accordingly.";
 	for (int i = 0; i < 30; i++) {
 		for (int j = 0; j < 30; j++) {
 			dynVec.push_back(arr[j][i]);
@@ -15,11 +16,12 @@ void copyStaticToDyn(int arr[30][30], vector<int>& dynVec) {
 };
 
 int returnElem(vector<int> vec, int x, int y) {
-	"Gets element at x,y of a vector, as if every 30 elements of the vector were a new column in a matrix";
+	"Gets element at x,y of a vector, as if every 30 elements of the vector were a new row in a 30x30 matrix";
 	return vec[x + y * 30];
 };
 
 void fillRand(int arr[30][30]) {
+	"Fills a 30x30 2-dimensional array(arr) with pseudo-random numbers chossing from 0 to 9.";
 	random_device rd;
 	uniform_int_distribution<int> dist(0, 9);
 	for (int i = 0; i < 30; i++) {
@@ -30,18 +32,20 @@ void fillRand(int arr[30][30]) {
 };
 
 void printArr(int arr[30][30]) {
+		"Prints a 30x30 2-dimensional array(arr) in the console as if it were a 30x30 matrix.";
 	for (int i = 0; i < 30; i++) {
 		for (int j = 0; j < 30; j++) {
-			cout << arr[j][i] << ',';
+			cout << arr[j][i] << ' ';
 		};
 		cout << endl;
 	};
 }
 
 void printVec(vector<int> vec) {
+	"Prints a vector(vec) to the console as a 30x30 matrix, assuming the vector has enough elements to fill that 30x30 matrix.";
 	for (int i = 0; i < 30; i++) {
 		for (int j = 0; j < 30; j++) {
-			cout << vec[j + i * 30] << ',';
+			cout << vec[j + i * 30] << ' ';
 		};
 		cout << endl;
 	};
@@ -49,12 +53,16 @@ void printVec(vector<int> vec) {
 
 int main()
 {
+
+	// Demonstration code with implementation of a user command-line interface for executing some of the above functions at will.
+	// !WARNING! Executing some of the functions in an unintended sequence may result in an error. Example: Attempting to print the vector before copying the array[30][30] to the vector will result in an error. 
+
 	int list[30][30];
 	vector<int> dynamicList;
 
+	// Quit variable for exiting the while-loop below.
 	bool quit = false;
 	string userInput = "";
-
 
 	while (quit == false) {
 		cout << "Type 'help' for information on available commands.\n";
@@ -84,14 +92,6 @@ int main()
 			quit = true;
 		}
 	}
-
-	// Prints out  list as a matrix using range-based- for-loop.
-	/*for (auto &row : list) {
-		for (auto &col : row) {
-			cout << col << ',';
-		};
-		cout << endl;
-	};*/
 
 	return 0;
 }
