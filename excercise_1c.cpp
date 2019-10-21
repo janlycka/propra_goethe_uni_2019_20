@@ -40,23 +40,54 @@ public:
         current[x + y*height] = state;
     };
 
-    void surroundCells(int x,int y) {
+    void surroundCells(int xCoord,int yCoord) {
         "For a cell specified by x and y coordinates, prints out the specified cell with the 8 cells having direct contact with the specified cell in a 3x3 matrix; contact by corners also counts.";
-        // !WARNING! Currently none of the edge cases are supported, for example, if one would choose a cell touching any of the walls of the plane, this function would not work.
+        // !WARNING! Currently none of the edge cases are supported, for example, if one would choose a cell touching any of the walls of the game-plane, this function would not work.
         short upL, up, upR, l, r, botL, bot, botR;
+        int leftX, rightX, topY, botY;
+
+        if (xCoord == 0) {
+            leftX = width-1;
+            rightX = xCoord+1;
+        } else {
+            leftX = xCoord-1;
+            rightX = (xCoord+1) % width;
+        }
+
+        if (yCoord == 0) {
+            topY = (height-1)*height;
+            botY = (yCoord+1)*height;
+        } else {
+            topY = (yCoord-1)*height;
+            botY = ((yCoord+1) % height)*height;
+        }
+
+        upL =  current[leftX + topY];
+        up =   current[xCoord + topY];
+        upR =  current[rightX + topY];
+        l =    current[leftX + yCoord];
+        r =    current[rightX + yCoord];
+        botL = current[leftX + botY];
+        bot =  current[xCoord + botY];
+        botR = current[rightX + botY];
 
         // Standard case, specified cell not touching any of walls of the game-plane
-        upL =  current[(x-1) + (y-1)*height];
-        up =   current[x + (y-1)*height];
-        upR =  current[(x+1) + (y+1)*height];
-        l =    current[(x-1) + y*height];
-        r =    current[(x+1) + y*height];
-        botL = current[(x-1) + (y+1)*height];
-        bot =  current[x + (y+1)*height];
-        botR = current[(x+1) + (y+1)*height];
+        // upL =  current[(x-1) + (y-1)*height];
+        // up =   current[x + (y-1)*height];
+        // upR =  current[(x+1) + (y+1)*height];
+        // l =    current[(x-1) + y*height];
+        // r =    current[(x+1) + y*height];
+        // botL = current[(x-1) + (y+1)*height];
+        // bot =  current[x + (y+1)*height];
+        // botR = current[(x+1) + (y+1)*height];
+
+        cout << "Top Y: " << topY << endl;
+        cout << "Bot Y: " << botY << endl;
+        cout << "Left X: " << leftX << endl;
+        cout << "Right X: " << rightX << endl;
 
         cout << upL << up << upR << endl;
-        cout << l << current[x + y*height] << r << endl;
+        cout << l << current[xCoord + yCoord*height] << r << endl;
         cout << botL << bot << botR << endl;
     }
 
@@ -81,7 +112,17 @@ int main(){
     aut.printA();
 
     cout << "Cells sourrounding the cell at coordinate x=2 | y=2:\n";
-    aut.surroundCells(2, 2);
+    aut.surroundCells(0, 9);
+
+    // TEST
+    // int width = 9;
+    // int coord = 2;
+
+    // cout << "Modulo: " << coord % width << "\n";
+    // cout << "Div: " << coord / width << "\n";
+
+
+    // TEST
 
     return 0;
 }
