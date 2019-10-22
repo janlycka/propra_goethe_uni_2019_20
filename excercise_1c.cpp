@@ -7,11 +7,6 @@ using namespace std;
 class Automaton {
 public:
     int width, height;
-
-    /* 
-    current: for game-state being displayed
-    updated: for generating the next evolution step of the game
-    */
     vector<short> current;
     vector<short> updated;
 
@@ -25,27 +20,28 @@ public:
         };
     }
 
-    void printA() {
-        "Prints the 'current' vector to the console as a matrix, depending on the user's choice of width and height.";
+    void printA(vector<short> arr) {
+        "Prints the arr(vector<short>) to the console as a matrix, depending on the user's choice of width and height.";
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                cout << current[x + y*height] << ' ';
+                cout << arr[x + y*height] << ' ';
             };
             cout << endl;
 	    };
     }
 
+
     void insert(int x, int y, short state) {
-        "Inserts a short(state) at the chosen x and y coordinate. Coordinates start at zero and in contrast to a cartesian plane, the y-coordinates direction is from top to bottom. The x-coordinte's direction is normal, from left to right.";
+        "Inserts a short(state) at the chosen x and y coordinate into the 'current' vector. Coordinates start at zero and in contrast to a cartesian plane, the y-coordinates direction is from top to bottom. The x-coordinte's direction is normal, from left to right.";
         current[x + y*height] = state;
     };
 
     short surroundCells(int xCoord,int yCoord) {
-        "For a cell specified by x and y coordinates, prints out the specified cell with the 8 cells having direct contact with the specified cell in a 3x3 matrix; contact by corners also counts.";
-        // !WARNING! Currently none of the edge cases are supported, for example, if one would choose a cell touching any of the walls of the game-plane, this function would not work.
+        "For a cell in the 'current' vector, specified by x and y coordinates, returns the amount of alive neighbouring cells. A neghbouring cell is any of the 8 cells surrounding a cell.";
         short upL, up, upR, l, r, botL, bot, botR;
         int leftX, rightX, topY, botY;
 
+        // leftX and rightX
         if (xCoord == 0) {
             leftX = width-1;
             rightX = xCoord+1;
@@ -54,6 +50,7 @@ public:
             rightX = (xCoord+1) % width;
         }
 
+        // topY and botY
         if (yCoord == 0) {
             topY = (height-1)*height;
             botY = (yCoord+1)*height;
@@ -62,30 +59,56 @@ public:
             botY = ((yCoord+1) % height)*height;
         }
 
+        // The eight sourrounding cells
         upL =  current[leftX + topY];
         up =   current[xCoord + topY];
         upR =  current[rightX + topY];
-        l =    current[leftX + yCoord];
-        r =    current[rightX + yCoord];
+        l =    current[leftX + (yCoord*height)];
+        r =    current[rightX + (yCoord*height)];
         botL = current[leftX + botY];
         bot =  current[xCoord + botY];
         botR = current[rightX + botY];
 
+        /* DEBUG
         cout << upL << up << upR << endl;
         cout << l << current[xCoord + yCoord*height] << r << endl;
-        cout << botL << bot << botR << endl;
-
+        cout << botL << bot << botR << end
         cout << "topY: " << topY << endl;
         cout << "botY: " << botY << endl;
         cout << "leftX: " << leftX << endl;
         cout << "rightX: " << rightX << endl;
-        cout << "yCoord" << yCoord << endl;
-        cout << "xCoord" << xCoord << endl;
+        cout << "yCoord: " << yCoord << endl;
+        cout << "xCoord: " << xCoord << endl;
+        DEBUG */
 
         return upL + up + upR + l + r + botL + bot + botR;
     }
 
-    void evolve() {
+    short evolveCell(int xCoord, int yCoord) {
+        "Determines whether or not the cell at xCoord and yCoord dies, survives or gets created. Returns either 1 or 0";
+        short surrAmnt = surroundCells(xCoord, yCoord);
+        
+        // If cell is dead:
+        if (current[xCoord + yCoord*10] == 0) {
+            if (surrAmnt == 3) {
+                return 1;
+            }
+            else {return 0;}
+        }
+        // If cell is alive:
+        else if (surrAmnt == 2 || surrAmnt == 3) {
+            return 1;
+        } 
+        else {return 0;}
+    }
+
+    void evolvePlane() {
+        "Applies the 'evolveCell' function to every cell of the 'current' vector und pushes the result into the 'updated' vector.";
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                updated.push_back(evolveCell(x, y));
+            };
+	    };
     }
 
     Automaton(int w = 30, int h = 30) {
@@ -103,18 +126,12 @@ int main(){
 
     aut.fillRand();
     cout << "Your game-plane:\n";
-    aut.printA();
+    aut.printA(aut.current);
 
-    // TEST
-    // int width = 9;
-    // int coord = 2;
-
-    // cout << "Modulo: " << coord % width << "\n";
-    // cout << "Div: " << coord / width << "\n";
-
-    cout << "Surround cells:\n" << aut.surroundCells(7, 7) << endl;
-
-    // TEST
+    aut.evolvePlane();
+    cout << "Evolved:\n";
+    aut.printA(aut.updated);
+    
 
     return 0;
 }
