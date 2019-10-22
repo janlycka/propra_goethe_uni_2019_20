@@ -40,7 +40,7 @@ public:
         current[x + y*height] = state;
     };
 
-    void surroundCells(int xCoord,int yCoord) {
+    short surroundCells(int xCoord,int yCoord) {
         "For a cell specified by x and y coordinates, prints out the specified cell with the 8 cells having direct contact with the specified cell in a 3x3 matrix; contact by corners also counts.";
         // !WARNING! Currently none of the edge cases are supported, for example, if one would choose a cell touching any of the walls of the game-plane, this function would not work.
         short upL, up, upR, l, r, botL, bot, botR;
@@ -71,24 +71,18 @@ public:
         bot =  current[xCoord + botY];
         botR = current[rightX + botY];
 
-        // Standard case, specified cell not touching any of walls of the game-plane
-        // upL =  current[(x-1) + (y-1)*height];
-        // up =   current[x + (y-1)*height];
-        // upR =  current[(x+1) + (y+1)*height];
-        // l =    current[(x-1) + y*height];
-        // r =    current[(x+1) + y*height];
-        // botL = current[(x-1) + (y+1)*height];
-        // bot =  current[x + (y+1)*height];
-        // botR = current[(x+1) + (y+1)*height];
-
-        cout << "Top Y: " << topY << endl;
-        cout << "Bot Y: " << botY << endl;
-        cout << "Left X: " << leftX << endl;
-        cout << "Right X: " << rightX << endl;
-
         cout << upL << up << upR << endl;
         cout << l << current[xCoord + yCoord*height] << r << endl;
         cout << botL << bot << botR << endl;
+
+        cout << "topY: " << topY << endl;
+        cout << "botY: " << botY << endl;
+        cout << "leftX: " << leftX << endl;
+        cout << "rightX: " << rightX << endl;
+        cout << "yCoord" << yCoord << endl;
+        cout << "xCoord" << xCoord << endl;
+
+        return upL + up + upR + l + r + botL + bot + botR;
     }
 
     void evolve() {
@@ -111,9 +105,6 @@ int main(){
     cout << "Your game-plane:\n";
     aut.printA();
 
-    cout << "Cells sourrounding the cell at coordinate x=2 | y=2:\n";
-    aut.surroundCells(0, 9);
-
     // TEST
     // int width = 9;
     // int coord = 2;
@@ -121,6 +112,7 @@ int main(){
     // cout << "Modulo: " << coord % width << "\n";
     // cout << "Div: " << coord / width << "\n";
 
+    cout << "Surround cells:\n" << aut.surroundCells(7, 7) << endl;
 
     // TEST
 
