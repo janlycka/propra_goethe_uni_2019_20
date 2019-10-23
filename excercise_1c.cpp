@@ -10,13 +10,13 @@ public:
     vector<short> current;
     vector<short> updated;
 
-    void fillRand() {
+    void fillRand(vector<short>& arr) {
         "Fills the vector 'current' with pseudo-random numbers choosing between 1 and 0.";
-        //!WARNING! Currently this distribution is not really pseudo-random, 1 and 0 keep generating in the same sequence.
+        //!WARNING! Currently this distribution is not pseudo-random, 1 and 0 keep generating in the same sequence.
         random_device rd;
         uniform_int_distribution<short> dist(0, 1);
         for (int i = 0; i < height*width; i++) {
-            current.push_back(dist(rd));
+            arr.push_back(dist(rd));
         };
     }
 
@@ -29,7 +29,6 @@ public:
             cout << endl;
 	    };
     }
-
 
     void insert(int x, int y, short state) {
         "Inserts a short(state) at the chosen x and y coordinate into the 'current' vector. Coordinates start at zero and in contrast to a cartesian plane, the y-coordinates direction is from top to bottom. The x-coordinte's direction is normal, from left to right.";
@@ -59,7 +58,7 @@ public:
             botY = ((yCoord+1) % height)*height;
         }
 
-        // The eight sourrounding cells
+        // The eight sourrounding cells depending on leftX, rightX, topY and botY.
         upL =  current[leftX + topY];
         up =   current[xCoord + topY];
         upR =  current[rightX + topY];
@@ -124,13 +123,13 @@ int main(){
     // Demonstration code:
     Automaton aut(10,10);
 
-    aut.fillRand();
+    aut.fillRand(aut.updated);
     cout << "Your game-plane:\n";
-    aut.printA(aut.current);
-
-    aut.evolvePlane();
-    cout << "Evolved:\n";
     aut.printA(aut.updated);
+
+    // aut.evolvePlane();
+    // cout << "Evolved:\n";
+    // aut.printA(aut.updated);
     
 
     return 0;
