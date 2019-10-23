@@ -121,15 +121,15 @@ public:
 int main(){
 
     // Demonstration code:
-    Automaton aut(10,10);
+    Automaton aut(5, 5);
 
-    aut.fillRand(aut.updated);
+    aut.fillRand(aut.current);
     cout << "Your game-plane:\n";
-    aut.printA(aut.updated);
+    aut.printA(aut.current);
 
-    // aut.evolvePlane();
-    // cout << "Evolved:\n";
-    // aut.printA(aut.updated);
+    aut.evolvePlane();
+    cout << "Evolved:\n";
+    aut.printA(aut.updated);
     
 
     return 0;
