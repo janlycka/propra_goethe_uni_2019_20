@@ -110,6 +110,23 @@ public:
 	    };
     }
 
+    void copyVec(vector<short> from, vector<short>& to) {
+        "Clears to(vector<short>) and copies all elements of from(vector<short>) to 'to'";
+        to.clear();
+        for (short i : from) {
+            to.push_back(i);
+        }
+    }
+
+    void updateGame() {
+        "Iterates one step of the game of life and prints the result to the console.";
+        cout << "\n";
+        evolvePlane();
+        copyVec(updated, current);
+        printA(current);
+        updated.clear();
+    }
+
     Automaton(int w = 30, int h = 30) {
         "Class constructor. User can choose width(w) and height(h) of the game-plane. If either parameter is not specified, it defaults to 30";
         width = w;
@@ -127,9 +144,13 @@ int main(){
     cout << "Your game-plane:\n";
     aut.printA(aut.current);
 
-    aut.evolvePlane();
-    cout << "Evolved:\n";
-    aut.printA(aut.updated);
+
+    string blank;
+
+    while (true) {
+        aut.updateGame();
+        cin >> blank;
+    }
     
 
     return 0;
