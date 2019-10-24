@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <random>
+#include <fstream>
+#include <sstream>
 
 using namespace std;
 
@@ -17,7 +19,7 @@ public:
         uniform_int_distribution<short> dist(0, 1);
         for (int i = 0; i < height*width; i++) {
             arr.push_back(dist(rd));
-        };
+        }
     }
 
     void printA(vector<short> arr) {
@@ -27,13 +29,13 @@ public:
                 cout << arr[x + y*height] << ' ';
             };
             cout << endl;
-	    };
+	    }
     }
 
     void insert(int x, int y, short state) {
         "Inserts a short(state) at the chosen x and y coordinate into the 'current' vector. Coordinates start at zero and in contrast to a cartesian plane, the y-coordinates direction is from top to bottom. The x-coordinte's direction is normal, from left to right.";
         current[x + y*height] = state;
-    };
+    }
 
     short surroundCells(int xCoord,int yCoord) {
         "For a cell in the 'current' vector, specified by x and y coordinates, returns the amount of alive neighbouring cells. A neghbouring cell is any of the 8 cells surrounding a cell.";
@@ -68,17 +70,17 @@ public:
         bot =  current[xCoord + botY];
         botR = current[rightX + botY];
 
-        /* DEBUG
-        cout << upL << up << upR << endl;
-        cout << l << current[xCoord + yCoord*height] << r << endl;
-        cout << botL << bot << botR << end
-        cout << "topY: " << topY << endl;
-        cout << "botY: " << botY << endl;
-        cout << "leftX: " << leftX << endl;
-        cout << "rightX: " << rightX << endl;
-        cout << "yCoord: " << yCoord << endl;
-        cout << "xCoord: " << xCoord << endl;
-        DEBUG */
+        // DEBUG
+        // cout << upL << up << upR << endl;
+        // cout << l << current[xCoord + yCoord*height] << r << endl;
+        // cout << botL << bot << botR << endl;
+        // cout << "topY: " << topY << endl;
+        // cout << "botY: " << botY << endl;
+        // cout << "leftX: " << leftX << endl;
+        // cout << "rightX: " << rightX << endl;
+        // cout << "yCoord: " << yCoord << endl;
+        // cout << "xCoord: " << xCoord << endl;
+        // DEBUG
 
         return upL + up + upR + l + r + botL + bot + botR;
     }
@@ -88,7 +90,7 @@ public:
         short surrAmnt = surroundCells(xCoord, yCoord);
         
         // If cell is dead:
-        if (current[xCoord + yCoord*10] == 0) {
+        if (current[xCoord + yCoord*height] == 0) {
             if (surrAmnt == 3) {
                 return 1;
             }
@@ -97,7 +99,7 @@ public:
         // If cell is alive:
         else if (surrAmnt == 2 || surrAmnt == 3) {
             return 1;
-        } 
+        }
         else {return 0;}
     }
 
@@ -127,6 +129,42 @@ public:
         updated.clear();
     }
 
+    void import(string inputFile) {
+        string line;
+        ifstream workingFile(inputFile);
+
+        if (workingFile.is_open()) {
+            // Clears current for later import of gameplane
+            current.clear();
+            // Extracting width from inputFile
+            getline(workingFile, line);
+            width = int(stoi(line));
+            // Extracting height from inputFile
+            getline(workingFile, line);
+            height = int(stoi(line));
+
+            ostringstream gameplane;
+            gameplane << workingFile.rdbuf();
+            line = gameplane.str();
+
+        for (int i : line) {
+            if (i != '\n') {
+                if (i == 'o') {
+                    current.push_back(0);
+                }
+                else if (i == '*') {
+                    current.push_back(1);
+                }
+            }
+        }
+
+        }
+        else {
+            cout << "Unable to open file";
+        }
+
+    }
+
     Automaton(int w = 30, int h = 30) {
         "Class constructor. User can choose width(w) and height(h) of the game-plane. If either parameter is not specified, it defaults to 30";
         width = w;
@@ -138,20 +176,15 @@ public:
 int main(){
 
     // Demonstration code:
-    Automaton aut(5, 5);
-
-    aut.fillRand(aut.current);
-    cout << "Your game-plane:\n";
+    Automaton aut;
+    aut.import("import_test.txt");
     aut.printA(aut.current);
 
-
     string blank;
-
     while (true) {
         aut.updateGame();
         cin >> blank;
-    }
-    
+    };
 
     return 0;
 }
