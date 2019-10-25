@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     string line;
 
     //ifstream myfile ("C:\\Users\\Jan\\Documents\\projects\\propra_goethe_uni_2019_20\\dateien\\beispielbild_1.txt");
-    ifstream myfile ("C:\\Users\\Jan\\Documents\\projects\\propra_goethe_uni_2019_20\\dateien\\beispielbild_1.txt");
+    ifstream myfile ("..\\dateien\\beispielbild_1.txt");
 
     int x = 0;
     int y = 0;
@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
 
     cout << x << " " << y;
 
-    //bool[][] imageData = new bool[1][2];
+    bool imageData[1][2];
 
 
     if (myfile.is_open())
@@ -36,7 +36,8 @@ int main(int argc, char *argv[])
       {
           int a = 0;
           for(int b=0; b<y; b++){
-             // imageData[a][b] = line.substr(b, b+1);
+              if(line.substr(b, b+1) == "1")
+              imageData[a][b] = true;
           }
 
          // strlen()
