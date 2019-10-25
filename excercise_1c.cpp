@@ -142,7 +142,7 @@ public:
         updated.clear();
     }
 
-    void import(string inputFile) {
+    void importPlane(string inputFile) {
         string line;
         ifstream workingFile(inputFile);
 
@@ -169,12 +169,26 @@ public:
                     current.push_back(1);
                 }
             }
+            workingFile.close();
         }
 
         }
         else {
             cout << "Unable to open file";
         }
+    }
+
+    void exportPlane(vector<short>& arr, string filename) {
+        ofstream workingFile(filename);
+
+        if (workingFile.is_open()) {
+            workingFile << width << '\n' << height << '\n';
+            workingFile << genString(arr);
+            workingFile.close();
+        }
+        else {
+            cout << "Unable to create/overwrite file";
+        } 
     }
 
     Automaton(int w = 30, int h = 30) {
@@ -189,14 +203,10 @@ int main(){
 
     // Demonstration code:
     Automaton aut;
-    aut.import("import_test.txt");
+    aut.importPlane("import_test.txt");
     aut.printA(aut.current);
 
-    // string str;
-    // str = to_string(42);
-    // cout << endl << "String Matrix" << str << endl;
-
-    cout << aut.genString(aut.current);
+    aut.exportPlane(aut.current, "export_test.txt");
 
     // string blank;
     // while (true) {
