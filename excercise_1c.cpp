@@ -3,6 +3,7 @@
 #include <random>
 #include <fstream>
 #include <sstream>
+#include <string>
 
 using namespace std;
 
@@ -26,10 +27,22 @@ public:
         "Prints the arr(vector<short>) to the console as a matrix, depending on the user's choice of width and height.";
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                cout << arr[x + y*height] << ' ';
+                cout << arr[x + y*height];
             };
             cout << endl;
 	    }
+    }
+
+    string genString(vector<short>& arr) {
+        "Returns a string illustrating the vector arr as a matrix, depending on the width and height of the gameplane";
+        string result;
+        for (int y = 0; y < height; y++){
+            for (int x = 0; x < width; x++) {
+                result += to_string(arr[x + y*height]);
+            }
+            result += '\n';
+        }
+        return result;
     }
 
     void insert(int x, int y, short state) {
@@ -162,7 +175,6 @@ public:
         else {
             cout << "Unable to open file";
         }
-
     }
 
     Automaton(int w = 30, int h = 30) {
@@ -180,11 +192,17 @@ int main(){
     aut.import("import_test.txt");
     aut.printA(aut.current);
 
-    string blank;
-    while (true) {
-        aut.updateGame();
-        cin >> blank;
-    };
+    // string str;
+    // str = to_string(42);
+    // cout << endl << "String Matrix" << str << endl;
+
+    cout << aut.genString(aut.current);
+
+    // string blank;
+    // while (true) {
+    //     aut.updateGame();
+    //     cin >> blank;
+    // };
 
     return 0;
 }
