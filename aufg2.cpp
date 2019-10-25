@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 {
     string line;
 
-    ifstream myfile ("beispielbild_1.txt");
+    ifstream myfile ("dateien\\beispielbild_1.txt");
 
     int x = 0;
     int y = 0;
@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 
     cout << x << " " << y;
 
-    bool imageData[1][2];
+    //bool[][] imageData = new bool[1][2];
 
 
     if (myfile.is_open())
