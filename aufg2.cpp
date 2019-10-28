@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
     cout << x << " " << y;
 
     //bool[][] imageData = new bool[1][2];
-
+//
 
     if (myfile.is_open())
     {
