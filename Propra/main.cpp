@@ -121,7 +121,21 @@ void showtextfile(){
     else cout << "Unable to open file";
 
 }
+static int** task_C(int y,int x){
 
+    int** ranBild = new int*[y];//={};
+    for(int a=0; a<y; a++){
+        ranBild[a] = new int[x];
+    }
+
+    for (int i=0;i<y;i++){
+        for (int j=0; j<x;j++){
+          ranBild[i][j]=rand()%2;
+ //       cout << ranBild[i][j] << " ";
+        }
+    }
+    return ranBild;
+    }
 
 
 
