@@ -11,15 +11,18 @@ using namespace std;
 // Klasse CBild: Speichert CBild, importiert und exportiert ein Bild in/aus eine/r Datei
 
 // import data from file
-void CBild::import_image(string fileName){/*
+void CBild::import_image(string fileName){
     Static::point dimensions = this->st->getDimensions(fileName);
-    this->width = dimensions.x;
-    this->height = dimensions.y;
+    this->width = dimensions.x/2;
+    this->height = dimensions.y/2;
 
     // allocate inner array, now that we know the dimensions
     this->image_data = new bool**[this->height];
     for(int i=0; i<this->height; i++){
-        this->image_data[i] = new bool[this->width];
+        this->image_data[i] = new bool*[this->width];
+        for(int e=0; e<this->width; e++){
+            this->image_data[i][e] = new bool[4];
+        }
     }
 
     //populate the inner array with the contents on the image file
@@ -27,13 +30,20 @@ void CBild::import_image(string fileName){/*
 
     if (myfile.is_open()){
       string line;
-      for (int y=0; getline (myfile,line); y++){
-          for(int x=0; x<line.length(); x++){
-              this->image_data[y][x] = (line.substr(x,1) == "1");
+      for (int y2=0, y=0; getline (myfile,line); y2++){
+          for(int x2=0, x = 0; x2<line.length(); x2++){
+              //even and odd lines should populate the first two and the latter values of ther Elementmatrix respectively
+              if(y%2==0){
+                  this->image_data[y][x][x2%2] = (line.substr(x2,1) == "1");
+              } else {
+                  this->image_data[y][x][x2%2+2] = (line.substr(x2,1) == "1");
+              }
+              if(x2%2==0){x++;}
           }
+          if(y2%2==0){y++;}
       }
       myfile.close();
-    }*/
+    }
 }
 
 // export data to file
