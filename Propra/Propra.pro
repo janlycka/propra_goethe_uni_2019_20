@@ -4,4 +4,12 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
-        main.cpp
+        cbild.cpp \
+        main.cpp \
+        nbild.cpp \
+        static.cpp
+
+HEADERS += \
+    cbild.h \
+    nbild.h \
+    static.h
