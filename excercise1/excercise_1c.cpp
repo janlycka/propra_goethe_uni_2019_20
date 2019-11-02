@@ -174,12 +174,12 @@ public:
 
         }
         else {
-            cout << "Unable to open file";
+            cout << "Unable to open file: " << inputFile << "\n";
         }
     }
 
-    void exportPlane(vector<short>& arr, string filename) {
-        ofstream workingFile(filename);
+    void exportPlane(vector<short>& arr, string exportFile) {
+        ofstream workingFile(exportFile);
 
         if (workingFile.is_open()) {
             workingFile << width << '\n' << height << '\n';
@@ -187,7 +187,7 @@ public:
             workingFile.close();
         }
         else {
-            cout << "Unable to create/overwrite file";
+            cout << "Unable to create/overwrite file:" << exportFile <<"\n";
         } 
     }
 
@@ -203,10 +203,11 @@ int main(){
 
     // Demonstration code:
     Automaton aut;
-    aut.importPlane("import_test.txt");
+    aut.importPlane("C:\\Users\\filip\\Desktop\\PROGRAMMING\\UNI C++\\propra_goethe_uni_2019_20\\excercise1\\import_test.txt");
     aut.printA(aut.currentPlane);
+    cout << "Hello World!";
 
-    aut.exportPlane(aut.currentPlane, "export_test.txt");
+    aut.exportPlane(aut.currentPlane, "C:\\Users\\filip\\Desktop\\PROGRAMMING\\UNI C++\\propra_goethe_uni_2019_20\\excercise1\\export_test.txt");
 
     // string blank;
     // while (true) {
