@@ -16,15 +16,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    golwidget.cpp \
+    gameoflifetab.cpp \
     main.cpp \
     mainwindow.cpp \
     mytabpage.cpp
 
 HEADERS += \
+    golwidget.h \
+    gameoflifetab.h \
     mainwindow.h \
     mytabpage.h
 
 FORMS += \
+    gameoflifetab.ui \
     mainwindow.ui \
     mytabpage.ui
 

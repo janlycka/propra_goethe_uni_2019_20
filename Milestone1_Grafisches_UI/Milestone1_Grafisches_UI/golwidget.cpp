@@ -1,0 +1,162 @@
+#include "golwidget.h"
+#include <iostream>
+#include <QMouseEvent>
+#include <QColor>
+#include <qmath.h>
+#include <random>
+
+GolWidget::GolWidget(QWidget *parent) :
+    QWidget(parent),
+    widthC(30),
+    heightC(30),
+    cell_size(20)
+{
+    std::random_device random;
+    std::uniform_int_distribution<short> dist(0, 1);
+    for (int i = 0; i < widthC*heightC; i++) {
+        cellVec.push_back(dist(random));
+    }
+
+    std::cout << "Surr Cells: " << surroundCells(1, 1) << std::endl << "dead/alive: " << evolveCell(1, 1) << std::endl;
+}
+
+void GolWidget::paintEvent(QPaintEvent *event)
+{
+    // https://stackoverflow.com/questions/24672146/qpainter-draw-line
+    // https://www.youtube.com/watch?v=tc3nlNEAdig
+    QPainter painter(this);
+    drawGrid(painter);
+
+    //QRect r(0,0,cell_size, cell_size);
+    //painter.fillRect(r, QColor("black"));
+    //cellVec.push_back(r);
+
+    drawCells(painter);
+
+}
+
+void GolWidget:: drawGrid(QPainter &painter){
+    int widthPlane = cell_size * widthC;
+    int heightPlane = cell_size * heightC;
+
+    for (int i = 0; i < widthC+1; i++){
+        painter.drawLine(i*cell_size, 0, i*cell_size, heightPlane);
+    }
+    for (int i = 0; i < heightC+1; i++){
+        painter.drawLine(0, i*cell_size, widthPlane, i*cell_size);
+    }
+}
+
+void GolWidget::drawCells(QPainter &painter)
+{
+    QPen grayPen(QColor("gray"));
+    painter.setPen(grayPen);
+    for (int x = 0; x < widthC; x++){
+        for (int y = 0; y < heightC; y++){
+            if (cellVec[x+y*heightC] == true){
+                QRect r(x*cell_size, y*cell_size, cell_size, cell_size);
+                painter.fillRect(r, QColor("black"));
+                painter.drawRect(r);
+            }
+        }
+    }
+}
+
+void GolWidget::clearPlane()
+{
+    for (int i = 0; i < widthC*heightC; i++){
+        cellVec[i] = 0;
+    }
+    std::cout << "Cleared!\n";
+    update();
+}
+
+short GolWidget::surroundCells(int xCoord, int yCoord)
+{
+    short upL, up, upR, l, r, botL, bot, botR;
+            int leftX, rightX, topY, botY;
+
+            // leftX and rightX
+            if (xCoord == 0) {
+                leftX = widthC-1;
+                rightX = xCoord+1;
+            } else {
+                leftX = xCoord-1;
+                rightX = (xCoord+1) % widthC;
+            }
+
+            // topY and botY
+            if (yCoord == 0) {
+                topY = (heightC-1)*heightC;
+                botY = (yCoord+1)*heightC;
+            } else {
+                topY = (yCoord-1)*heightC;
+                botY = ((yCoord+1) % heightC)*heightC;
+            }
+
+            // The eight sourrounding cells depending on leftX, rightX, topY and botY.
+            upL =  cellVec[leftX + topY];
+            up =   cellVec[xCoord + topY];
+            upR =  cellVec[rightX + topY];
+            l =    cellVec[leftX + (yCoord*heightC)];
+            r =    cellVec[rightX + (yCoord*heightC)];
+            botL = cellVec[leftX + botY];
+            bot =  cellVec[xCoord + botY];
+            botR = cellVec[rightX + botY];
+
+            return upL + up + upR + l + r + botL + bot + botR;
+}
+
+short GolWidget::evolveCell(int xCoord, int yCoord)
+{
+    short surrAmnt = surroundCells(xCoord, yCoord);
+
+    // If cell is dead:
+    if (cellVec[xCoord + yCoord*heightC] == 0) {
+        if (surrAmnt == 3) {
+            return 1;
+        }
+        else {return 0;}
+    }
+    // If cell is alive:
+    else if (surrAmnt == 2 || surrAmnt == 3) {
+        return 1;
+    }
+    else {return 0;}
+}
+
+void GolWidget::copyVec(std::vector<short> from, std::vector<short>& to)
+{
+    to.clear();
+    for (short i : from) {
+        to.push_back(i);
+    }
+}
+
+void GolWidget::evolvePlane()
+{
+    for (int y = 0; y < heightC; y++) {
+        for (int x = 0; x < widthC; x++) {
+            updatedVec.push_back(evolveCell(x, y));
+        }
+    }
+    copyVec(updatedVec, cellVec);
+    updatedVec.clear();
+    update();
+}
+
+void GolWidget::mousePressEvent(QMouseEvent *event)
+{
+    int x = floor(event->x()/cell_size);
+    int y = floor(event->y()/cell_size);
+    std::cout << "X: " << x << std::endl << "Y: " << y << std::endl;
+
+    short& clickedCell = cellVec[x + y*heightC];
+    if (clickedCell == 0) {
+        clickedCell = 1;
+    } else {
+        clickedCell = 0;
+    }
+    update();
+}
+
