@@ -10,11 +10,11 @@ using namespace std;
 class Automaton {
 public:
     int width, height;
-    vector<short> current;
-    vector<short> updated;
+    vector<short> currentPlane;
+    vector<short> updatedPlane;
 
     void fillRand(vector<short>& arr) {
-        "Fills the vector 'current' with pseudo-random numbers choosing between 1 and 0.";
+        "Fills the vector 'currentPlane' with pseudo-random numbers choosing between 1 and 0.";
         //!WARNING! Currently this distribution is not pseudo-random, 1 and 0 keep generating in the same sequence.
         random_device rd;
         uniform_int_distribution<short> dist(0, 1);
@@ -46,12 +46,12 @@ public:
     }
 
     void insert(int x, int y, short state) {
-        "Inserts a short(state) at the chosen x and y coordinate into the 'current' vector. Coordinates start at zero and in contrast to a cartesian plane, the y-coordinates direction is from top to bottom. The x-coordinte's direction is normal, from left to right.";
-        current[x + y*height] = state;
+        "Inserts a short(state) at the chosen x and y coordinate into the 'currentPlane' vector. Coordinates start at zero and in contrast to a cartesian plane, the y-coordinates direction is from top to bottom. The x-coordinte's direction is normal, from left to right.";
+        currentPlane[x + y*height] = state;
     }
 
     short surroundCells(int xCoord,int yCoord) {
-        "For a cell in the 'current' vector, specified by x and y coordinates, returns the amount of alive neighbouring cells. A neghbouring cell is any of the 8 cells surrounding a cell.";
+        "For a cell in the 'currentPlane' vector, specified by x and y coordinates, returns the amount of alive neighbouring cells. A neghbouring cell is any of the 8 cells surrounding a cell.";
         short upL, up, upR, l, r, botL, bot, botR;
         int leftX, rightX, topY, botY;
 
@@ -74,18 +74,18 @@ public:
         }
 
         // The eight sourrounding cells depending on leftX, rightX, topY and botY.
-        upL =  current[leftX + topY];
-        up =   current[xCoord + topY];
-        upR =  current[rightX + topY];
-        l =    current[leftX + (yCoord*height)];
-        r =    current[rightX + (yCoord*height)];
-        botL = current[leftX + botY];
-        bot =  current[xCoord + botY];
-        botR = current[rightX + botY];
+        upL =  currentPlane[leftX + topY];
+        up =   currentPlane[xCoord + topY];
+        upR =  currentPlane[rightX + topY];
+        l =    currentPlane[leftX + (yCoord*height)];
+        r =    currentPlane[rightX + (yCoord*height)];
+        botL = currentPlane[leftX + botY];
+        bot =  currentPlane[xCoord + botY];
+        botR = currentPlane[rightX + botY];
 
         // DEBUG
         // cout << upL << up << upR << endl;
-        // cout << l << current[xCoord + yCoord*height] << r << endl;
+        // cout << l << currentPlane[xCoord + yCoord*height] << r << endl;
         // cout << botL << bot << botR << endl;
         // cout << "topY: " << topY << endl;
         // cout << "botY: " << botY << endl;
@@ -103,7 +103,7 @@ public:
         short surrAmnt = surroundCells(xCoord, yCoord);
         
         // If cell is dead:
-        if (current[xCoord + yCoord*height] == 0) {
+        if (currentPlane[xCoord + yCoord*height] == 0) {
             if (surrAmnt == 3) {
                 return 1;
             }
@@ -117,10 +117,10 @@ public:
     }
 
     void evolvePlane() {
-        "Applies the 'evolveCell' function to every cell of the 'current' vector und pushes the result into the 'updated' vector.";
+        "Applies the 'evolveCell' function to every cell of the 'currentPlane' vector und pushes the result into the 'updatedPlane' vector.";
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                updated.push_back(evolveCell(x, y));
+                updatedPlane.push_back(evolveCell(x, y));
             };
 	    };
     }
@@ -137,9 +137,9 @@ public:
         "Iterates one step of the game of life and prints the result to the console.";
         cout << "\n";
         evolvePlane();
-        copyVec(updated, current);
-        printA(current);
-        updated.clear();
+        copyVec(updatedPlane, currentPlane);
+        printA(currentPlane);
+        updatedPlane.clear();
     }
 
     void importPlane(string inputFile) {
@@ -147,8 +147,8 @@ public:
         ifstream workingFile(inputFile);
 
         if (workingFile.is_open()) {
-            // Clears current for later import of gameplane
-            current.clear();
+            // Clears currentPlane for later import of gameplane
+            currentPlane.clear();
             // Extracting width from inputFile
             getline(workingFile, line);
             width = int(stoi(line));
@@ -163,10 +163,10 @@ public:
         for (int i : line) {
             if (i != '\n') {
                 if (i == 'o') {
-                    current.push_back(0);
+                    currentPlane.push_back(0);
                 }
                 else if (i == '*') {
-                    current.push_back(1);
+                    currentPlane.push_back(1);
                 }
             }
             workingFile.close();
@@ -174,12 +174,12 @@ public:
 
         }
         else {
-            cout << "Unable to open file";
+            cout << "Unable to open file: " << inputFile << "\n";
         }
     }
 
-    void exportPlane(vector<short>& arr, string filename) {
-        ofstream workingFile(filename);
+    void exportPlane(vector<short>& arr, string exportFile) {
+        ofstream workingFile(exportFile);
 
         if (workingFile.is_open()) {
             workingFile << width << '\n' << height << '\n';
@@ -187,7 +187,7 @@ public:
             workingFile.close();
         }
         else {
-            cout << "Unable to create/overwrite file";
+            cout << "Unable to create/overwrite file:" << exportFile <<"\n";
         } 
     }
 
@@ -203,10 +203,11 @@ int main(){
 
     // Demonstration code:
     Automaton aut;
-    aut.importPlane("import_test.txt");
-    aut.printA(aut.current);
+    aut.importPlane("C:\\Users\\filip\\Desktop\\PROGRAMMING\\UNI C++\\propra_goethe_uni_2019_20\\excercise1\\import_test.txt");
+    aut.printA(aut.currentPlane);
+    cout << "Hello World!";
 
-    aut.exportPlane(aut.current, "export_test.txt");
+    aut.exportPlane(aut.currentPlane, "C:\\Users\\filip\\Desktop\\PROGRAMMING\\UNI C++\\propra_goethe_uni_2019_20\\excercise1\\export_test.txt");
 
     // string blank;
     // while (true) {
