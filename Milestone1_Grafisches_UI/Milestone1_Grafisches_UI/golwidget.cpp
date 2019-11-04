@@ -7,16 +7,19 @@
 
 GolWidget::GolWidget(QWidget *parent) :
     QWidget(parent),
-    widthC(15),
-    heightC(15),
     cell_size(20)
 {
+    widthC = 15;
+    heightC = 15;
+    fillWithBlank();
+}
 
+void GolWidget::fillWithBlank()
+{
+    cellVec.clear();
     for (int i = 0; i < widthC*heightC; i++) {
         cellVec.push_back(0);
     }
-
-    std::cout << "Surr Cells: " << surroundCells(1, 1) << std::endl << "dead/alive: " << evolveCell(1, 1) << std::endl;
 }
 
 

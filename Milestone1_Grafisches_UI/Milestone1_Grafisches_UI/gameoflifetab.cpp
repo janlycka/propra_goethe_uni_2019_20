@@ -38,17 +38,20 @@ void gameOfLifeTab::on_startButton_clicked()
 
 void gameOfLifeTab::on_planeWidthSpinBox_valueChanged(int arg1)
 {
+    GolWidget *gol = ui->golWidget;
     ui->golWidget->widthC = arg1;
-    ui->golWidget->addVerticalCells();
-    // update();
+    std::cout << "widthSpinBox>>> " << "width: " << gol->widthC << " height: " <<  gol->heightC << std::endl;
+    ui->golWidget->fillWithBlank();
+    ui->golWidget->update();
 }
 
 void gameOfLifeTab::on_planeHeightSpinBox_valueChanged(int arg1)
 {
+    GolWidget *gol = ui->golWidget;
     ui->golWidget->heightC = arg1;
-    std::cout << ui->golWidget->heightC << std::endl;
-    ui->golWidget->addHorizontalCells();
-    update();
+    std::cout << "widthSpinBox>>> " << "width: " << gol->widthC << " height: " <<  gol->heightC << std::endl;
+    ui->golWidget->fillWithBlank();
+    ui->golWidget->update();
 }
 
 void gameOfLifeTab::on_randomizeButton_clicked()

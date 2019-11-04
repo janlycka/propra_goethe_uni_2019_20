@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QTimer>
+#include <golwidget.h>
 
 namespace Ui {
 class gameOfLifeTab;
