@@ -66,6 +66,10 @@ NBild* NBild::paste_over(NBild* bild1, NBild* bild2){
 
 // prevend memory leakage
 void NBild::delete_image(){
+    for(int i=0; i<this->height; i++){
+        delete this->image_data[i];
+    }
+    delete this->image_data;
     cout << "deleted";
 }
 

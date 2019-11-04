@@ -132,6 +132,15 @@ NBild* CBild::decode_image(CBild* bild, NBild* key){
 
 // prevend memory leakage
 void CBild::delete_image(){
+
+    for(int i=0; i<this->height; i++){
+        for(int e=0; e<this->width; e++){
+            delete this->image_data[i][e];
+        }
+        delete this->image_data[i];
+    }
+
+    delete this->image_data;
     cout << "deleted";
 }
 
