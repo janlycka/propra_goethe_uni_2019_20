@@ -37,41 +37,55 @@ static void saveTwoOverlainImagesEncodedWithASingleKey(CBild* cb1, CBild* cb2/*,
 
 int main(int argc, char *argv[])
 {
+    string command = "";
+    string arg1, arg2, arg3;
+    cout << endl << "USAGE:" << endl;
+    cout << "visualscript encode <source> <result> <key>" << endl;
+    cout << "visualscript decode <image_a> <image_b> <result>" << endl;
+    cout << "visualscript overlay <image_a> <image_b> <result>" << endl;
+    cout << "visualscript ";
 
+    cin >> command >> arg1 >> arg2 >> arg3;
     //2g
     //Implementiert ein Konsolenprogramm
-    string command = argv[0];
+
     if(command=="encode"){
+        cout << arg1 << " ---encoded(" << arg3 << ")--> " << arg2 << endl;
         NBild* bild = new NBild();
-        bild->import_image(argv[1]);
+        bild->import_image(arg1);
 
         NBild* key = new NBild();
-        key->import_image(argv[3]);
+        key->import_image(arg3);
 
         CBild* cbild = new CBild();
         cbild->encode_image(bild, key);
-        cbild->export_image(argv[2]);
+        cbild->export_image(arg2);
     }
     if(command=="decode"){
         CBild* bild1 = new CBild();
-        bild1->import_image(argv[1]);
+        bild1->import_image(arg1);
 
         NBild* key = new NBild();
-        key->import_image(argv[2]);
+        key->import_image(arg2);
 
         NBild* nbild = bild1->decode_image(bild1, key);
-        nbild->export_image(argv[3]);
+        nbild->export_image(arg3);
     }
     if(command=="overlay"){
         CBild* bild1 = new CBild();
-        bild1->import_image(argv[1]);
+        bild1->import_image(arg1);
 
         CBild* bild2 = new CBild();
-        bild2->import_image(argv[2]);
+        bild2->import_image(arg2);
 
-        saveTwoOverlainImagesEncodedWithASingleKey(bild1, bild2, argv[3]);
+        saveTwoOverlainImagesEncodedWithASingleKey(bild1, bild2, arg3);
     }
 
+    if(command=="random"){
+        NBild* key = task_C(89,303);
+        key->export_image(arg1);
+    }
+/*
     Static *st = new Static();
     Static::point dimensions = st->getDimensions("..\\..\\dateien\\beispielbild_1.txt");
     cout << "Dimensions: " << dimensions.x << " x " << dimensions.y << endl;
@@ -101,4 +115,5 @@ int main(int argc, char *argv[])
     key->delete_image();
 
     delete bild;
+    */
 }
