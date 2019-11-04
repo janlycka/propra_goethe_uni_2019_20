@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_GolWidget_t {
-    QByteArrayData data[23];
-    char stringdata0[248];
+    QByteArrayData data[24];
+    char stringdata0[261];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -54,7 +54,8 @@ QT_MOC_LITERAL(18, 175, 18), // "addHorizontalCells"
 QT_MOC_LITERAL(19, 194, 9), // "rowAmount"
 QT_MOC_LITERAL(20, 204, 16), // "addVerticalCells"
 QT_MOC_LITERAL(21, 221, 12), // "columnAmount"
-QT_MOC_LITERAL(22, 234, 13) // "fillWithBlank"
+QT_MOC_LITERAL(22, 234, 13), // "fillWithBlank"
+QT_MOC_LITERAL(23, 248, 12) // "printCellVec"
 
     },
     "GolWidget\0drawGrid\0\0QPainter&\0painter\0"
@@ -64,7 +65,7 @@ QT_MOC_LITERAL(22, 234, 13) // "fillWithBlank"
     "std::vector<short>&\0to\0randomize\0"
     "addHorizontalCells\0rowAmount\0"
     "addVerticalCells\0columnAmount\0"
-    "fillWithBlank"
+    "fillWithBlank\0printCellVec"
 };
 #undef QT_MOC_LITERAL
 
@@ -74,7 +75,7 @@ static const uint qt_meta_data_GolWidget[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      13,   14, // methods
+      14,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -82,19 +83,20 @@ static const uint qt_meta_data_GolWidget[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    1,   79,    2, 0x0a /* Public */,
-       5,    1,   82,    2, 0x0a /* Public */,
-       6,    0,   85,    2, 0x0a /* Public */,
-       7,    2,   86,    2, 0x0a /* Public */,
-      10,    2,   91,    2, 0x0a /* Public */,
-      11,    0,   96,    2, 0x0a /* Public */,
-      12,    2,   97,    2, 0x0a /* Public */,
-      17,    0,  102,    2, 0x0a /* Public */,
-      18,    1,  103,    2, 0x0a /* Public */,
-      18,    0,  106,    2, 0x2a /* Public | MethodCloned */,
-      20,    1,  107,    2, 0x0a /* Public */,
-      20,    0,  110,    2, 0x2a /* Public | MethodCloned */,
-      22,    0,  111,    2, 0x0a /* Public */,
+       1,    1,   84,    2, 0x0a /* Public */,
+       5,    1,   87,    2, 0x0a /* Public */,
+       6,    0,   90,    2, 0x0a /* Public */,
+       7,    2,   91,    2, 0x0a /* Public */,
+      10,    2,   96,    2, 0x0a /* Public */,
+      11,    0,  101,    2, 0x0a /* Public */,
+      12,    2,  102,    2, 0x0a /* Public */,
+      17,    0,  107,    2, 0x0a /* Public */,
+      18,    1,  108,    2, 0x0a /* Public */,
+      18,    0,  111,    2, 0x2a /* Public | MethodCloned */,
+      20,    1,  112,    2, 0x0a /* Public */,
+      20,    0,  115,    2, 0x2a /* Public | MethodCloned */,
+      22,    0,  116,    2, 0x0a /* Public */,
+      23,    0,  117,    2, 0x0a /* Public */,
 
  // slots: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
@@ -108,6 +110,7 @@ static const uint qt_meta_data_GolWidget[] = {
     QMetaType::Void, QMetaType::Int,   19,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int,   21,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -135,6 +138,7 @@ void GolWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         case 10: _t->addVerticalCells((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 11: _t->addVerticalCells(); break;
         case 12: _t->fillWithBlank(); break;
+        case 13: _t->printCellVec(); break;
         default: ;
         }
     }
@@ -169,13 +173,13 @@ int GolWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 13)
+        if (_id < 14)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 13;
+        _id -= 14;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 13)
+        if (_id < 14)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 13;
+        _id -= 14;
     }
     return _id;
 }

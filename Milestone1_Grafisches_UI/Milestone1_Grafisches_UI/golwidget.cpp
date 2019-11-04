@@ -9,7 +9,7 @@ GolWidget::GolWidget(QWidget *parent) :
     QWidget(parent),
     cell_size(20)
 {
-    widthC = 15;
+    widthC = 16;
     heightC = 15;
     fillWithBlank();
 }
@@ -21,7 +21,6 @@ void GolWidget::fillWithBlank()
         cellVec.push_back(0);
     }
 }
-
 
 void GolWidget::randomize()
 {
@@ -81,7 +80,7 @@ void GolWidget::drawCells(QPainter &painter)
     painter.setPen(grayPen);
     for (int x = 0; x < widthC; x++){
         for (int y = 0; y < heightC; y++){
-            if (cellVec[x+y*heightC] == true){
+            if (cellVec[x+y*widthC] == true){
                 QRect r(x*cell_size, y*cell_size, cell_size, cell_size);
                 painter.fillRect(r, QColor("black"));
                 painter.drawRect(r);
@@ -115,19 +114,19 @@ short GolWidget::surroundCells(int xCoord, int yCoord)
 
             // topY and botY
             if (yCoord == 0) {
-                topY = (heightC-1)*heightC;
-                botY = (yCoord+1)*heightC;
+                topY = (heightC-1)*widthC;
+                botY = (yCoord+1)*widthC;
             } else {
-                topY = (yCoord-1)*heightC;
-                botY = ((yCoord+1) % heightC)*heightC;
+                topY = (yCoord-1)*widthC;
+                botY = ((yCoord+1) % heightC)*widthC;
             }
 
             // The eight sourrounding cells depending on leftX, rightX, topY and botY.
             upL =  cellVec[leftX + topY];
             up =   cellVec[xCoord + topY];
             upR =  cellVec[rightX + topY];
-            l =    cellVec[leftX + (yCoord*heightC)];
-            r =    cellVec[rightX + (yCoord*heightC)];
+            l =    cellVec[leftX + (yCoord*widthC)];
+            r =    cellVec[rightX + (yCoord*widthC)];
             botL = cellVec[leftX + botY];
             bot =  cellVec[xCoord + botY];
             botR = cellVec[rightX + botY];
@@ -140,7 +139,7 @@ short GolWidget::evolveCell(int xCoord, int yCoord)
     short surrAmnt = surroundCells(xCoord, yCoord);
 
     // If cell is dead:
-    if (cellVec[xCoord + yCoord*heightC] == 0) {
+    if (cellVec[xCoord + yCoord*widthC] == 0) {
         if (surrAmnt == 3) {
             return 1;
         }
@@ -183,7 +182,7 @@ void GolWidget::mousePressEvent(QMouseEvent *event)
     if ((x <= widthC-1) && (y <= heightC-1)){
         std::cout << "in bounds!\n";
 
-        short& clickedCell = cellVec[x + y*heightC];
+        short& clickedCell = cellVec[x + y*widthC];
         if (clickedCell == 0) {
             clickedCell = 1;
         } else {
@@ -192,11 +191,16 @@ void GolWidget::mousePressEvent(QMouseEvent *event)
         update();
 
     } else {
-        std::cout << "Out of bounds!\n";
+        std::cout << "Out of bounds!" << std::endl;
     }
+}
 
-
-
-
+void GolWidget::printCellVec()
+{
+    for(int x = 0; x < widthC; x++){
+        for(int y = 0; y < heightC; y++){
+            std::cout << cellVec[x + y*widthC];
+        }
+    }
 }
 

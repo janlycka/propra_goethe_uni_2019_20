@@ -36,6 +36,7 @@ public slots:
     void addHorizontalCells(int rowAmount=1);
     void addVerticalCells(int columnAmount=1);
     void fillWithBlank();
+    void printCellVec();
 };
 
 #endif // GOLWIDGET_H

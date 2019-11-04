@@ -27,7 +27,7 @@ public:
         "Prints the arr(vector<short>) to the console as a matrix, depending on the user's choice of width and height.";
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                cout << arr[x + y*height];
+                cout << arr[x + y*width];
             };
             cout << endl;
 	    }
@@ -202,11 +202,12 @@ public:
 int main(){
 
     // Demonstration code:
-    Automaton aut;
-    aut.importPlane("import_test.txt");
+    Automaton aut(10, 11);
+    aut.fillRand(aut.current);
     aut.printA(aut.current);
 
-    aut.exportPlane(aut.current, "export_test.txt");
+    // aut.importPlane("import_test.txt");
+    // aut.exportPlane(aut.current, "export_test.txt");
 
     // string blank;
     // while (true) {
