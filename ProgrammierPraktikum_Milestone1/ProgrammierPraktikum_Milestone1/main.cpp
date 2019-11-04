@@ -37,7 +37,7 @@ static void saveTwoOverlainImagesEncodedWithASingleKey(CBild* cb1, CBild* cb2/*,
 
 int main(int argc, char *argv[])
 {
-
+//blahblahblah
     //2g
     //Implementiert ein Konsolenprogramm
     string command = argv[0];
