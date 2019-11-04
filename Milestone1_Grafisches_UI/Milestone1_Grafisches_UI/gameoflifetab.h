@@ -19,6 +19,12 @@ public:
 private slots:
     void on_startButton_clicked();
 
+    void on_planeWidthSpinBox_valueChanged(int arg1);
+
+    void on_planeHeightSpinBox_valueChanged(int arg1);
+
+    void on_randomizeButton_clicked();
+
 private:
     Ui::gameOfLifeTab *ui;
     QTimer *evolveTimer;

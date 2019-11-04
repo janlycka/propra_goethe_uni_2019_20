@@ -41,8 +41,8 @@ public:
     QHBoxLayout *startStopLayout;
     QPushButton *startButton;
     QPushButton *evolveButton;
-    QPushButton *stopButton;
     QPushButton *clearButton;
+    QPushButton *randomizeButton;
     QHBoxLayout *importExportLeyout;
     QPushButton *importButton;
     QPushButton *exportButton;
@@ -73,6 +73,7 @@ public:
 
         planeWidthSpinBox = new QSpinBox(gameOfLifeTab);
         planeWidthSpinBox->setObjectName(QString::fromUtf8("planeWidthSpinBox"));
+        planeWidthSpinBox->setValue(30);
 
         plaeWidthLayout->addWidget(planeWidthSpinBox);
 
@@ -88,6 +89,8 @@ public:
 
         planeHeightSpinBox = new QSpinBox(gameOfLifeTab);
         planeHeightSpinBox->setObjectName(QString::fromUtf8("planeHeightSpinBox"));
+        planeHeightSpinBox->setSingleStep(1);
+        planeHeightSpinBox->setValue(30);
 
         planeHeightLayout->addWidget(planeHeightSpinBox);
 
@@ -103,6 +106,9 @@ public:
 
         intervalSpinBox = new QSpinBox(gameOfLifeTab);
         intervalSpinBox->setObjectName(QString::fromUtf8("intervalSpinBox"));
+        intervalSpinBox->setMinimum(10);
+        intervalSpinBox->setMaximum(1000000);
+        intervalSpinBox->setValue(100);
 
         intervallLayout->addWidget(intervalSpinBox);
 
@@ -121,11 +127,6 @@ public:
 
         startStopLayout->addWidget(evolveButton);
 
-        stopButton = new QPushButton(gameOfLifeTab);
-        stopButton->setObjectName(QString::fromUtf8("stopButton"));
-
-        startStopLayout->addWidget(stopButton);
-
 
         controlLayout->addLayout(startStopLayout);
 
@@ -133,6 +134,11 @@ public:
         clearButton->setObjectName(QString::fromUtf8("clearButton"));
 
         controlLayout->addWidget(clearButton);
+
+        randomizeButton = new QPushButton(gameOfLifeTab);
+        randomizeButton->setObjectName(QString::fromUtf8("randomizeButton"));
+
+        controlLayout->addWidget(randomizeButton);
 
         importExportLeyout = new QHBoxLayout();
         importExportLeyout->setObjectName(QString::fromUtf8("importExportLeyout"));
@@ -173,8 +179,8 @@ public:
         intervalSpinBox->setSuffix(QCoreApplication::translate("gameOfLifeTab", " ms", nullptr));
         startButton->setText(QCoreApplication::translate("gameOfLifeTab", "Start", nullptr));
         evolveButton->setText(QCoreApplication::translate("gameOfLifeTab", "Next Generation", nullptr));
-        stopButton->setText(QCoreApplication::translate("gameOfLifeTab", "Stop", nullptr));
         clearButton->setText(QCoreApplication::translate("gameOfLifeTab", "Clear", nullptr));
+        randomizeButton->setText(QCoreApplication::translate("gameOfLifeTab", "Randomize", nullptr));
         importButton->setText(QCoreApplication::translate("gameOfLifeTab", "import", nullptr));
         exportButton->setText(QCoreApplication::translate("gameOfLifeTab", "export", nullptr));
     } // retranslateUi

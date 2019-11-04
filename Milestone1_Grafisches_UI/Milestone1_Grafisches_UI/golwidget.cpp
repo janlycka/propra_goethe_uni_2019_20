@@ -7,18 +7,29 @@
 
 GolWidget::GolWidget(QWidget *parent) :
     QWidget(parent),
-    widthC(30),
-    heightC(30),
+    widthC(15),
+    heightC(15),
     cell_size(20)
 {
-    std::random_device random;
-    std::uniform_int_distribution<short> dist(0, 1);
+
     for (int i = 0; i < widthC*heightC; i++) {
-        cellVec.push_back(dist(random));
+        cellVec.push_back(0);
     }
 
     std::cout << "Surr Cells: " << surroundCells(1, 1) << std::endl << "dead/alive: " << evolveCell(1, 1) << std::endl;
 }
+
+
+void GolWidget::randomize()
+{
+    std::random_device random;
+    std::uniform_int_distribution<short> dist(0, 1);
+    for (short &i : cellVec) {
+        i = (dist(random));
+    }
+    update();
+}
+
 
 void GolWidget::paintEvent(QPaintEvent *event)
 {
@@ -33,6 +44,20 @@ void GolWidget::paintEvent(QPaintEvent *event)
 
     drawCells(painter);
 
+}
+
+void GolWidget::addHorizontalCells(int rowAmount)
+{
+    for (int i = 0; i < widthC; i++){
+        cellVec.push_back(0);
+    }
+}
+
+void GolWidget::addVerticalCells(int columnAmount)
+{
+    for (int i = 0; i < heightC; i++) {
+        cellVec.push_back(0);
+    }
 }
 
 void GolWidget:: drawGrid(QPainter &painter){
@@ -151,12 +176,24 @@ void GolWidget::mousePressEvent(QMouseEvent *event)
     int y = floor(event->y()/cell_size);
     std::cout << "X: " << x << std::endl << "Y: " << y << std::endl;
 
-    short& clickedCell = cellVec[x + y*heightC];
-    if (clickedCell == 0) {
-        clickedCell = 1;
+
+    if ((x <= widthC-1) && (y <= heightC-1)){
+        std::cout << "in bounds!\n";
+
+        short& clickedCell = cellVec[x + y*heightC];
+        if (clickedCell == 0) {
+            clickedCell = 1;
+        } else {
+            clickedCell = 0;
+        }
+        update();
+
     } else {
-        clickedCell = 0;
+        std::cout << "Out of bounds!\n";
     }
-    update();
+
+
+
+
 }
 

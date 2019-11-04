@@ -35,6 +35,9 @@
          <property name="suffix">
           <string> cells</string>
          </property>
+         <property name="value">
+          <number>30</number>
+         </property>
         </widget>
        </item>
       </layout>
@@ -53,6 +56,12 @@
          <property name="suffix">
           <string> cells</string>
          </property>
+         <property name="singleStep">
+          <number>1</number>
+         </property>
+         <property name="value">
+          <number>30</number>
+         </property>
         </widget>
        </item>
       </layout>
@@ -70,6 +79,15 @@
         <widget class="QSpinBox" name="intervalSpinBox">
          <property name="suffix">
           <string> ms</string>
+         </property>
+         <property name="minimum">
+          <number>10</number>
+         </property>
+         <property name="maximum">
+          <number>1000000</number>
+         </property>
+         <property name="value">
+          <number>100</number>
          </property>
         </widget>
        </item>
@@ -91,19 +109,19 @@
          </property>
         </widget>
        </item>
-       <item>
-        <widget class="QPushButton" name="stopButton">
-         <property name="text">
-          <string>Stop</string>
-         </property>
-        </widget>
-       </item>
       </layout>
      </item>
      <item>
       <widget class="QPushButton" name="clearButton">
        <property name="text">
         <string>Clear</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="randomizeButton">
+       <property name="text">
+        <string>Randomize</string>
        </property>
       </widget>
      </item>

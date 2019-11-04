@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QPainter>
 #include <vector>
+#include <string>
 
 class GolWidget : public QWidget
 {
@@ -31,6 +32,9 @@ public slots:
     short evolveCell(int xCoord, int yCoord);
     void evolvePlane();
     void copyVec(std::vector<short> from, std::vector<short>& to);
+    void randomize();
+    void addHorizontalCells(int rowAmount=1);
+    void addVerticalCells(int columnAmount=1);
 };
 
 #endif // GOLWIDGET_H

@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_GolWidget_t {
-    QByteArrayData data[17];
-    char stringdata0[165];
+    QByteArrayData data[22];
+    char stringdata0[234];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -48,14 +48,21 @@ QT_MOC_LITERAL(12, 110, 7), // "copyVec"
 QT_MOC_LITERAL(13, 118, 18), // "std::vector<short>"
 QT_MOC_LITERAL(14, 137, 4), // "from"
 QT_MOC_LITERAL(15, 142, 19), // "std::vector<short>&"
-QT_MOC_LITERAL(16, 162, 2) // "to"
+QT_MOC_LITERAL(16, 162, 2), // "to"
+QT_MOC_LITERAL(17, 165, 9), // "randomize"
+QT_MOC_LITERAL(18, 175, 18), // "addHorizontalCells"
+QT_MOC_LITERAL(19, 194, 9), // "rowAmount"
+QT_MOC_LITERAL(20, 204, 16), // "addVerticalCells"
+QT_MOC_LITERAL(21, 221, 12) // "columnAmount"
 
     },
     "GolWidget\0drawGrid\0\0QPainter&\0painter\0"
     "drawCells\0clearPlane\0surroundCells\0"
     "xCoord\0yCoord\0evolveCell\0evolvePlane\0"
     "copyVec\0std::vector<short>\0from\0"
-    "std::vector<short>&\0to"
+    "std::vector<short>&\0to\0randomize\0"
+    "addHorizontalCells\0rowAmount\0"
+    "addVerticalCells\0columnAmount"
 };
 #undef QT_MOC_LITERAL
 
@@ -65,7 +72,7 @@ static const uint qt_meta_data_GolWidget[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       7,   14, // methods
+      12,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -73,13 +80,18 @@ static const uint qt_meta_data_GolWidget[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    1,   49,    2, 0x0a /* Public */,
-       5,    1,   52,    2, 0x0a /* Public */,
-       6,    0,   55,    2, 0x0a /* Public */,
-       7,    2,   56,    2, 0x0a /* Public */,
-      10,    2,   61,    2, 0x0a /* Public */,
-      11,    0,   66,    2, 0x0a /* Public */,
-      12,    2,   67,    2, 0x0a /* Public */,
+       1,    1,   74,    2, 0x0a /* Public */,
+       5,    1,   77,    2, 0x0a /* Public */,
+       6,    0,   80,    2, 0x0a /* Public */,
+       7,    2,   81,    2, 0x0a /* Public */,
+      10,    2,   86,    2, 0x0a /* Public */,
+      11,    0,   91,    2, 0x0a /* Public */,
+      12,    2,   92,    2, 0x0a /* Public */,
+      17,    0,   97,    2, 0x0a /* Public */,
+      18,    1,   98,    2, 0x0a /* Public */,
+      18,    0,  101,    2, 0x2a /* Public | MethodCloned */,
+      20,    1,  102,    2, 0x0a /* Public */,
+      20,    0,  105,    2, 0x2a /* Public | MethodCloned */,
 
  // slots: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
@@ -89,6 +101,11 @@ static const uint qt_meta_data_GolWidget[] = {
     QMetaType::Short, QMetaType::Int, QMetaType::Int,    8,    9,
     QMetaType::Void,
     QMetaType::Void, 0x80000000 | 13, 0x80000000 | 15,   14,   16,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,   19,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,   21,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -108,6 +125,11 @@ void GolWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
             if (_a[0]) *reinterpret_cast< short*>(_a[0]) = std::move(_r); }  break;
         case 5: _t->evolvePlane(); break;
         case 6: _t->copyVec((*reinterpret_cast< std::vector<short>(*)>(_a[1])),(*reinterpret_cast< std::vector<short>(*)>(_a[2]))); break;
+        case 7: _t->randomize(); break;
+        case 8: _t->addHorizontalCells((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 9: _t->addHorizontalCells(); break;
+        case 10: _t->addVerticalCells((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 11: _t->addVerticalCells(); break;
         default: ;
         }
     }
@@ -142,13 +164,13 @@ int GolWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 7)
+        if (_id < 12)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 12;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 7)
+        if (_id < 12)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 7;
+        _id -= 12;
     }
     return _id;
 }
