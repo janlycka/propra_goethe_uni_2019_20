@@ -33,10 +33,8 @@ public slots:
     void evolvePlane();
     void copyVec(std::vector<short> from, std::vector<short>& to);
     void randomize();
-    void addHorizontalCells(int rowAmount=1);
-    void addVerticalCells(int columnAmount=1);
     void fillWithBlank();
-    void printCellVec();
+    void printVec();
 };
 
 #endif // GOLWIDGET_H

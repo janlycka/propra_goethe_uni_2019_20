@@ -26,10 +26,17 @@ private slots:
 
     void on_randomizeButton_clicked();
 
+    void on_intervalSpinBox_valueChanged(int arg1);
+
+    void on_importButton_clicked();
+
+    void on_exportButton_clicked();
+
 private:
     Ui::gameOfLifeTab *ui;
     QTimer *evolveTimer;
     bool evolveTimerActive = false;
+    int evolveTimerDelay;
 };
 
 #endif // GAMEOFLIFETAB_H

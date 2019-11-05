@@ -14,6 +14,16 @@ GolWidget::GolWidget(QWidget *parent) :
     fillWithBlank();
 }
 
+void GolWidget::printVec()
+{
+    for(int y = 0; y < heightC; y++){
+        for(int x = 0; x < widthC; x++){
+            std::cout << cellVec[x + y*widthC];
+        }
+        std::cout << std::endl;
+    }
+}
+
 void GolWidget::fillWithBlank()
 {
     cellVec.clear();
@@ -48,20 +58,6 @@ void GolWidget::paintEvent(QPaintEvent *event)
 
 }
 
-void GolWidget::addHorizontalCells(int rowAmount)
-{
-    for (int i = 0; i < widthC; i++){
-        cellVec.push_back(0);
-    }
-}
-
-void GolWidget::addVerticalCells(int columnAmount)
-{
-    for (int i = 0; i < heightC; i++) {
-        cellVec.push_back(0);
-    }
-}
-
 void GolWidget:: drawGrid(QPainter &painter){
     int widthPlane = cell_size * widthC;
     int heightPlane = cell_size * heightC;
@@ -80,7 +76,7 @@ void GolWidget::drawCells(QPainter &painter)
     painter.setPen(grayPen);
     for (int x = 0; x < widthC; x++){
         for (int y = 0; y < heightC; y++){
-            if (cellVec[x+y*widthC] == true){
+            if (cellVec[x+y*widthC] == 1){
                 QRect r(x*cell_size, y*cell_size, cell_size, cell_size);
                 painter.fillRect(r, QColor("black"));
                 painter.drawRect(r);
@@ -194,13 +190,3 @@ void GolWidget::mousePressEvent(QMouseEvent *event)
         std::cout << "Out of bounds!" << std::endl;
     }
 }
-
-void GolWidget::printCellVec()
-{
-    for(int x = 0; x < widthC; x++){
-        for(int y = 0; y < heightC; y++){
-            std::cout << cellVec[x + y*widthC];
-        }
-    }
-}
-
