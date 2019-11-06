@@ -31,6 +31,13 @@
      </widget>
     </item>
     <item>
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="text">
+       <string>Import Key</string>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QPushButton" name="createKeyButton">
       <property name="text">
        <string>Create Key</string>
@@ -47,14 +54,14 @@
     <item>
      <widget class="QPushButton" name="pushButton_2">
       <property name="text">
-       <string>PushButton</string>
+       <string>Import Bild</string>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QPushButton" name="pushButton">
       <property name="text">
-       <string>PushButton</string>
+       <string>Export Bild</string>
       </property>
      </widget>
     </item>

@@ -1,5 +1,4 @@
 #include "cryptowidget.h"
-#include "ui_cryptowidget.h"
 #include <iostream>
 #include <QMouseEvent>
 #include <QColor>
@@ -13,6 +12,6 @@ cryptowidget::cryptowidget(QWidget *parent) :
     pixel_size(20)
 
 {
-    ui->setupUi(this);
+    //ui->setupUi(this);
 }
 
