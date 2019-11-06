@@ -7,7 +7,7 @@ namespace Ui {
 class visuellecriptographytab;
 }
 
-class visuellecriptographytab : public QDialog
+class visuellecriptographytab : public QWidget
 {
     Q_OBJECT
 

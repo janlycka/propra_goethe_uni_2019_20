@@ -2,7 +2,7 @@
 #include "ui_visuellecriptographytab.h"
 
 visuellecriptographytab::visuellecriptographytab(QWidget *parent) :
-    QDialog(parent),
+    QWidget(parent),
     ui(new Ui::visuellecriptographytab)
 {
     ui->setupUi(this);

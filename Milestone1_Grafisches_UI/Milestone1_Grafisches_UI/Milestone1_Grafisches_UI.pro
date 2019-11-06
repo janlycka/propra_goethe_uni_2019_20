@@ -16,26 +16,27 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    cryptographytab.cpp \
+    cryptowidget.cpp \
     golwidget.cpp \
     gameoflifetab.cpp \
     main.cpp \
     mainwindow.cpp \
-    mytabpage.cpp \
-    visuellecriptographytab.cpp
+    mytabpage.cpp
 
 HEADERS += \
+    cryptographytab.h \
+    cryptowidget.h \
     golwidget.h \
     gameoflifetab.h \
     mainwindow.h \
-    mytabpage.h \
-    visuellecriptographytab.h
+    mytabpage.h
 
 FORMS += \
+    cryptographytab.ui \
     gameoflifetab.ui \
     mainwindow.ui \
-    mytabpage.ui \
-    visuellecriptographytab.ui \
-    visuellecryptographytab.ui
+    mytabpage.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
