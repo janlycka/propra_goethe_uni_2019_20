@@ -21,11 +21,13 @@ public:
     int heightC;
     int pixel_size;
     std::vector<short> cellVec;
-    std::vector<short> updatedVec;
+    //std::vector<short> updatedVec;
 
 
 private:
     Ui::cryptowidget *ui;
+    void paintEvent(QPaintEvent *event);
+    //void mousePressEvent(QMouseEvent *event);
 
 signals:
 
@@ -33,6 +35,7 @@ public slots:
     // void paintPlane(QPainter &painter);
     void drawGrid(QPainter &painter);
     void drawCells(QPainter &painter);
+    /*
     void clearPlane();
     short surroundCells(int xCoord, int yCoord);
     short evolveCell(int xCoord, int yCoord);
@@ -40,7 +43,7 @@ public slots:
     void copyVec(std::vector<short> from, std::vector<short>& to);
     void randomize();
     void addHorizontalCells(int rowAmount=1);
-    void addVerticalCells(int columnAmount=1);
+    void addVerticalCells(int columnAmount=1);*/
 };
 
 #endif // CRYPTOWIDGET_H

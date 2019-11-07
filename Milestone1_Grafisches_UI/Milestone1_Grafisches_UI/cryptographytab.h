@@ -26,6 +26,16 @@ private slots:
 
     void on_pushButton_3_clicked();
 
+    void on_comboBox_activated(const QString &arg1);
+
+    void on_comboBox_currentIndexChanged(const QString &arg1);
+
+    void on_pushButton_4_clicked();
+
+    void on_ImportButton_clicked();
+
+    void on_importbildbutton_clicked();
+
 private:
     Ui::cryptographytab *ui;
 };

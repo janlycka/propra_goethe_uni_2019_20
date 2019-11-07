@@ -11,10 +11,12 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include "cryptowidget.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -23,14 +25,17 @@ class Ui_cryptographytab
 public:
     QWidget *verticalLayoutWidget;
     QVBoxLayout *verticalLayout;
+    QComboBox *comboBox;
+    QPushButton *importbildbutton;
+    QPushButton *ImportButton;
     QPushButton *encodeButton;
     QPushButton *createKeyButton;
-    QPushButton *decodeButton;
-    QPushButton *pushButton_2;
     QPushButton *pushButton;
     QLabel *label;
     QLabel *label_2;
     QLabel *label_3;
+    QLabel *label_4;
+    cryptowidget *Cryptowidget;
 
     void setupUi(QWidget *cryptographytab)
     {
@@ -43,6 +48,21 @@ public:
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
+        comboBox = new QComboBox(verticalLayoutWidget);
+        comboBox->setObjectName(QString::fromUtf8("comboBox"));
+
+        verticalLayout->addWidget(comboBox);
+
+        importbildbutton = new QPushButton(verticalLayoutWidget);
+        importbildbutton->setObjectName(QString::fromUtf8("importbildbutton"));
+
+        verticalLayout->addWidget(importbildbutton);
+
+        ImportButton = new QPushButton(verticalLayoutWidget);
+        ImportButton->setObjectName(QString::fromUtf8("ImportButton"));
+
+        verticalLayout->addWidget(ImportButton);
+
         encodeButton = new QPushButton(verticalLayoutWidget);
         encodeButton->setObjectName(QString::fromUtf8("encodeButton"));
 
@@ -52,16 +72,6 @@ public:
         createKeyButton->setObjectName(QString::fromUtf8("createKeyButton"));
 
         verticalLayout->addWidget(createKeyButton);
-
-        decodeButton = new QPushButton(verticalLayoutWidget);
-        decodeButton->setObjectName(QString::fromUtf8("decodeButton"));
-
-        verticalLayout->addWidget(decodeButton);
-
-        pushButton_2 = new QPushButton(verticalLayoutWidget);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-
-        verticalLayout->addWidget(pushButton_2);
 
         pushButton = new QPushButton(verticalLayoutWidget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
@@ -77,6 +87,12 @@ public:
         label_3 = new QLabel(cryptographytab);
         label_3->setObjectName(QString::fromUtf8("label_3"));
         label_3->setGeometry(QRect(380, 30, 101, 16));
+        label_4 = new QLabel(cryptographytab);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+        label_4->setGeometry(QRect(420, 330, 55, 16));
+        Cryptowidget = new cryptowidget(cryptographytab);
+        Cryptowidget->setObjectName(QString::fromUtf8("Cryptowidget"));
+        Cryptowidget->setGeometry(QRect(60, 70, 211, 121));
 
         retranslateUi(cryptographytab);
 
@@ -86,14 +102,15 @@ public:
     void retranslateUi(QWidget *cryptographytab)
     {
         cryptographytab->setWindowTitle(QCoreApplication::translate("cryptographytab", "Form", nullptr));
-        encodeButton->setText(QCoreApplication::translate("cryptographytab", "Encode", nullptr));
+        importbildbutton->setText(QCoreApplication::translate("cryptographytab", "Import Bild", nullptr));
+        ImportButton->setText(QCoreApplication::translate("cryptographytab", "Import Key", nullptr));
+        encodeButton->setText(QCoreApplication::translate("cryptographytab", "Choose Task", nullptr));
         createKeyButton->setText(QCoreApplication::translate("cryptographytab", "Create Key", nullptr));
-        decodeButton->setText(QCoreApplication::translate("cryptographytab", "Decode", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("cryptographytab", "PushButton", nullptr));
-        pushButton->setText(QCoreApplication::translate("cryptographytab", "PushButton", nullptr));
+        pushButton->setText(QCoreApplication::translate("cryptographytab", "Export Bild", nullptr));
         label->setText(QCoreApplication::translate("cryptographytab", "Original picture", nullptr));
         label_2->setText(QCoreApplication::translate("cryptographytab", "Key", nullptr));
         label_3->setText(QCoreApplication::translate("cryptographytab", "encrypted picture", nullptr));
+        label_4->setText(QCoreApplication::translate("cryptographytab", "TextLabel", nullptr));
     } // retranslateUi
 
 };
