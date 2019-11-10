@@ -3,6 +3,8 @@
 #include "mytabpage.h"
 #include <gameoflifetab.h>
 #include <golwidget.h>
+#include <cryptographytab.h>
+#include <cryptowidget.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -13,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //Rename Window Title
     this->setWindowTitle("Milestone 1");
     gameOfLifeTab *golTab = new gameOfLifeTab;
-    MyTabPage *kryptografieTab = new MyTabPage;
+    cryptographytab *kryptografieTab = new cryptographytab;
     ui-> myTabWidget ->removeTab(0);
     ui-> myTabWidget ->removeTab(0);
     ui-> myTabWidget ->addTab(golTab, tr("Game Of Life"));

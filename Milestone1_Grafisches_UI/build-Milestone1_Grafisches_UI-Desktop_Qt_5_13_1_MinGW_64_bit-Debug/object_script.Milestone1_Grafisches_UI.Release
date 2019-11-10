@@ -1,0 +1,13 @@
+release/cryptographytab.o
+release/cryptowidget.o
+release/golwidget.o
+release/gameoflifetab.o
+release/main.o
+release/mainwindow.o
+release/mytabpage.o
+release/moc_cryptographytab.o
+release/moc_cryptowidget.o
+release/moc_golwidget.o
+release/moc_gameoflifetab.o
+release/moc_mainwindow.o
+release/moc_mytabpage.o
