@@ -21,8 +21,6 @@ protected:
     void paintEvent(QPaintEvent *event);
     void mousePressEvent(QMouseEvent *event);
 
-signals:
-
 public slots:
     // void paintPlane(QPainter &painter);
     void drawGrid(QPainter &painter);
