@@ -104,7 +104,7 @@ void gameOfLifeTab::on_importButton_clicked()
     ui->planeWidthSpinBox->setValue(gol->widthC);
     ui->planeHeightSpinBox->setValue(gol->heightC);
 
-    // Read rest of the file containing the saved gameplane and pu onto the readFile variable
+    // Read rest of the file containing the saved gameplane and assign to the readFile variable.
     while (!importFile.atEnd()) {
         readFile += importFile.readLine();
     }
