@@ -3,7 +3,8 @@
 #include <QMouseEvent>
 #include <QColor>
 #include <qmath.h>
-#include <random>
+#include <ctime>
+#include <cstdlib>
 
 GolWidget::GolWidget(QWidget *parent) :
     QWidget(parent),
@@ -14,6 +15,7 @@ GolWidget::GolWidget(QWidget *parent) :
     fillWithBlank();
 }
 
+/* Gameplane gets printed cell by cell. */
 void GolWidget::printVec()
 {
     for(int y = 0; y < heightC; y++){
@@ -24,6 +26,7 @@ void GolWidget::printVec()
     }
 }
 
+/* Paints every cell white by filling the vector with 0's for the beginning of the game and whenever width or height are changed. */
 void GolWidget::fillWithBlank()
 {
     cellVec.clear();
@@ -32,32 +35,26 @@ void GolWidget::fillWithBlank()
     }
 }
 
+/* Fills up the vector with random values (0 or 1). */
 void GolWidget::randomize()
 {
-    std::random_device random;
-    std::uniform_int_distribution<short> dist(0, 1);
+    srand(time(0));
     for (short &i : cellVec) {
-        i = (dist(random));
+        i = (rand() % 2);
     }
     update();
 }
 
-
+/* This is the function where the plane is painted. */
 void GolWidget::paintEvent(QPaintEvent *event)
 {
-    // https://stackoverflow.com/questions/24672146/qpainter-draw-line
-    // https://www.youtube.com/watch?v=tc3nlNEAdig
     QPainter painter(this);
+
     drawGrid(painter);
-
-    //QRect r(0,0,cell_size, cell_size);
-    //painter.fillRect(r, QColor("black"));
-    //cellVec.push_back(r);
-
     drawCells(painter);
-
 }
 
+/* Creates the grid structure by drawing lines. */
 void GolWidget:: drawGrid(QPainter &painter){
     int widthPlane = cell_size * widthC;
     int heightPlane = cell_size * heightC;
@@ -70,6 +67,7 @@ void GolWidget:: drawGrid(QPainter &painter){
     }
 }
 
+/* Paints the cells based on cellVec. */
 void GolWidget::drawCells(QPainter &painter)
 {
     QPen grayPen(QColor("gray"));
@@ -85,6 +83,7 @@ void GolWidget::drawCells(QPainter &painter)
     }
 }
 
+/* Changes every value in cellVec to 0 and calls the paintEvent in order to visualize the change. */
 void GolWidget::clearPlane()
 {
     for (int i = 0; i < widthC*heightC; i++){
@@ -94,6 +93,7 @@ void GolWidget::clearPlane()
     update();
 }
 
+/* Counts the amount of alive neighbouring cells of a given cell (by x and y coordinates) and returns that amount. */
 short GolWidget::surroundCells(int xCoord, int yCoord)
 {
     short upL, up, upR, l, r, botL, bot, botR;
@@ -130,6 +130,7 @@ short GolWidget::surroundCells(int xCoord, int yCoord)
             return upL + up + upR + l + r + botL + bot + botR;
 }
 
+/* Determines whether or not the cell at xCoord and yCoord dies, survives or gets created. Returns either 1 or 0. */
 short GolWidget::evolveCell(int xCoord, int yCoord)
 {
     short surrAmnt = surroundCells(xCoord, yCoord);
@@ -148,6 +149,7 @@ short GolWidget::evolveCell(int xCoord, int yCoord)
     else {return 0;}
 }
 
+/* Clears to(vector<short>) and copies all elements of from(vector<short>) to 'to'. */
 void GolWidget::copyVec(std::vector<short> from, std::vector<short>& to)
 {
     to.clear();
@@ -156,6 +158,10 @@ void GolWidget::copyVec(std::vector<short> from, std::vector<short>& to)
     }
 }
 
+/* Applies the 'evolveCell' function to every cell of the 'current' vector und pushes the result into the 'updated'
+ * vector then copies the 'updated' vector to 'cellVec'.
+ * Then updates the whole gameplane.
+ */
 void GolWidget::evolvePlane()
 {
     for (int y = 0; y < heightC; y++) {
@@ -168,6 +174,7 @@ void GolWidget::evolvePlane()
     update();
 }
 
+/* Inverts the value of the cell when it is clicked and calls paintEvent. */
 void GolWidget::mousePressEvent(QMouseEvent *event)
 {
     int x = floor(event->x()/cell_size);
