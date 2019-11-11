@@ -28,9 +28,9 @@ gameOfLifeTab::~gameOfLifeTab()
     delete ui;
 }
 
+/* Starts or stops the 'evolveTimer' based on the 'evolveTimerActive' variable. */
 void gameOfLifeTab::on_startButton_clicked()
 {
-    "Starts or stops the 'evolveTimer' based on the 'evolveTimerActive' variable.";
     if (evolveTimerActive == true) {
         evolveTimer->stop();
         evolveTimerActive = false;
@@ -43,9 +43,9 @@ void gameOfLifeTab::on_startButton_clicked()
     }
 }
 
+/* Changes width of the gameplane. Sets every cells' state to 0. */
 void gameOfLifeTab::on_planeWidthSpinBox_valueChanged(int arg1)
 {
-    "Changes width of the gameplane. Sets every cells' state to 0.";
     GolWidget *gol = ui->golWidget;
 
     ui->golWidget->widthC = arg1;
@@ -54,9 +54,9 @@ void gameOfLifeTab::on_planeWidthSpinBox_valueChanged(int arg1)
     ui->golWidget->update();
 }
 
+/* Changes height of the gameplane. Sets every cells' state to 0. */
 void gameOfLifeTab::on_planeHeightSpinBox_valueChanged(int arg1)
 {
-    "Changes height of the gameplane. Sets every cells' state to 0.";
     GolWidget *gol = ui->golWidget;
 
     ui->golWidget->heightC = arg1;
@@ -65,15 +65,15 @@ void gameOfLifeTab::on_planeHeightSpinBox_valueChanged(int arg1)
     ui->golWidget->update();
 }
 
+/* Pseudo-randomly sets the state of every cell in the current gameplane to either 1 or 0. */
 void gameOfLifeTab::on_randomizeButton_clicked()
 {
-    "Pseudo-randomly sets the state of every cell in the current gameplane to either 1 or 0.";
     ui->golWidget->randomize();
 }
 
+/* Changes the speed at which the timer calls the 'evolvePlane' function. Speed changeable while timer is running. */
 void gameOfLifeTab::on_intervalSpinBox_valueChanged(int arg1)
 {
-    "Changes the the speed at which the timer calls the 'evolvePlane' function. Speed changeable while timer is on.";
     if (evolveTimerActive == true){
         evolveTimer->stop();
         evolveTimerDelay = arg1;
@@ -83,9 +83,9 @@ void gameOfLifeTab::on_intervalSpinBox_valueChanged(int arg1)
     }
 }
 
+/* Opens a file dialog to let the user choose which file with a saved gameplane to load. */
 void gameOfLifeTab::on_importButton_clicked()
 {
-    "Opens a file dialog to let the user choose which file with a saved gameplane to load.";
     GolWidget *gol = ui->golWidget;
     QString readFile;
     QString importFilePath = QFileDialog::getOpenFileName(this, tr("Open Text file"), "/home", tr("Text files (*.txt)"));
@@ -122,9 +122,9 @@ void gameOfLifeTab::on_importButton_clicked()
     gol->update();
 }
 
+/* Opens a file dialogue to let the user choose/create a txt file to save the current state of the gameplane into. */
 void gameOfLifeTab::on_exportButton_clicked()
 {
-    "Opens file dialogue to let the user choose/create a txt file to save the current state of the gameplane in.";
     GolWidget *gol = ui->golWidget;
 
     //
