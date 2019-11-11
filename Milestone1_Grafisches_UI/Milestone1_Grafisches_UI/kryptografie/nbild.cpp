@@ -39,6 +39,8 @@ void NBild::import_image(string fileName){
 // export data to file
 void NBild::export_image(string fileName){
     ofstream fout(fileName);
+    if (fout.is_open())
+      {
     for(int x=0; x<this->height; x++){
         for(int y=0; y<this->width; y++){
             fout << this->image_data[x][y];
@@ -46,6 +48,7 @@ void NBild::export_image(string fileName){
         fout << endl;
     }
     fout.close();
+    }
 }
 
 //2e

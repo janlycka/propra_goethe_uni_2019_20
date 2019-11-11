@@ -4,6 +4,7 @@
 #include "static.h"
 #include "cbild.h"
 #include "nbild.h"
+#include<QDebug>
 
 using namespace std;
 
@@ -71,24 +72,37 @@ void CBild::export_image(string fileName){
 
 // export data to NBild
 NBild* CBild::export_nbild(){
-    NBild* tmpbild = new NBild();
-    tmpbild->width=this->width*2;
-    tmpbild->height=this->height*2;
 
-    tmpbild->image_data = new bool*[tmpbild->height];
-    for(int i=0; i<tmpbild->height; i++){
-        tmpbild->image_data[i] = new bool[this->width];
+    int nWidth = this->width*2;
+    int nHeight = this->height*2;
+
+    NBild* tmpbild = NULL;
+    bool** arr = new bool*[nHeight];
+
+    for(int i=0; i<nHeight; i++){
+
+        arr[i] = new bool[nWidth];
+        for(int e=0; e<nWidth; e++){
+            arr[i][e]=false;
+        }
     }
-
+qInfo() << "AA ";
     for(int x=0, x2=0; x<this->height; x++, x2+=2){
         //das CBild enthält ein array: bool[4], wobei dessen Elementenpaare [1,2], [3,4] jeweils 2 Linien im verschluesselten Bild vertreten. Darum 2 Durchlaeufe
         for(int y=0, y2=0; y<this->width; y++, y2+=2){
-            tmpbild->image_data[x2][y2] = this->image_data[x][y][0];
-            tmpbild->image_data[x2+1][y2] = this->image_data[x][y][1];
-            tmpbild->image_data[x2][y2+1] = this->image_data[x][y][2];
-            tmpbild->image_data[x2+1][y2+1] = this->image_data[x][y][3];
+
+            //qInfo() << " new[" << x2 << "][" << y2 << "] << old[" << x << "][" << y << "][0]";
+            arr[x2][y2] = this->image_data[x][y][0];
+            //qInfo() << " new[" << x2+1 << "][" << y2 << "] << old[" << x << "][" << y << "][1]";
+            arr[x2+1][y2] = this->image_data[x][y][1];
+            //qInfo() << " new[" << x2 << "][" << y2+1 << "] << old[" << x << "][" << y << "][2]";
+            arr[x2][y2+1] = this->image_data[x][y][2];
+            //qInfo() << " new[" << x2+1 << "][" << y2+1 << "] << old[" << x << "][" << y << "][3]";
+            arr[x2+1][y2+1] = this->image_data[x][y][3];
         }
     }
+
+    tmpbild = new NBild(arr, this->width*2, this->height*2);
     return tmpbild;
 }
 
@@ -168,6 +182,7 @@ void CBild::delete_image(){
     }
 
     delete this->image_data;
+    delete this;
     cout << "deleted";
 }
 

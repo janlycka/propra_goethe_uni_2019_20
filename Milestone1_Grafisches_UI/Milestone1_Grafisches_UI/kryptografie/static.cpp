@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include "static.h"
+#include<QDebug>
 
 Static::Static()
 {

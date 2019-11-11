@@ -39,7 +39,11 @@ void cryptographytab::on_encodeButton_clicked()
     if(state=="encode"){
         encoded_bild = new CBild();
         encoded_bild->encode_image(main_bild, key_bild);
-        ui->Cryptowidget_3->populateVector(encoded_bild->export_nbild());
+        NBild *nb = encoded_bild->export_nbild();
+
+        //delete &nb;
+        //encoded_bild->delete_image();
+        ui->Cryptowidget_3->populateVector(nb);
     }
     if(state=="decode"){
         encoded_bild = new CBild();
