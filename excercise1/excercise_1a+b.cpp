@@ -121,6 +121,5 @@ int main()
             cout << "This is not a valid command!\n";
         }
 	}
-
 	return 0;
 }
