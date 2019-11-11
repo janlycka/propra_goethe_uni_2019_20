@@ -20,6 +20,9 @@ SOURCES += \
     cryptowidget.cpp \
     golwidget.cpp \
     gameoflifetab.cpp \
+    kryptografie/cbild.cpp \
+    kryptografie/nbild.cpp \
+    kryptografie/static.cpp \
     main.cpp \
     mainwindow.cpp \
     mytabpage.cpp
@@ -29,6 +32,9 @@ HEADERS += \
     cryptowidget.h \
     golwidget.h \
     gameoflifetab.h \
+    kryptografie/cbild.h \
+    kryptografie/nbild.h \
+    kryptografie/static.h \
     mainwindow.h \
     mytabpage.h
 

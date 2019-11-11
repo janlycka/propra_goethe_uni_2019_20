@@ -5,6 +5,7 @@
 #include <QPainter>
 #include <vector>
 #include <string>
+#include "kryptografie/nbild.h"
 
 
 namespace Ui {
@@ -17,10 +18,12 @@ class cryptowidget : public QWidget
 
 public:
     explicit cryptowidget(QWidget *parent = nullptr);
-    int widthC;
-    int heightC;
+    int widthC = 0;
+    int heightC = 0;
     int pixel_size;
     std::vector<short> cellVec;
+    QPainter * myPainter;
+    NBild* nbild;
     //std::vector<short> updatedVec;
 
 
@@ -35,6 +38,7 @@ public slots:
     // void paintPlane(QPainter &painter);
     void drawGrid(QPainter &painter);
     void drawCells(QPainter &painter);
+    void populateVector(NBild*);
     /*
     void clearPlane();
     short surroundCells(int xCoord, int yCoord);

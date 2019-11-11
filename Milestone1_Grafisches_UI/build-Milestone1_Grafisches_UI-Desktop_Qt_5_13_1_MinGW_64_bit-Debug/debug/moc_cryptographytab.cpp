@@ -106,6 +106,9 @@ void cryptographytab::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
         case 0: _t->on_encodeButton_clicked(); break;
         case 1: _t->on_createKeyButton_clicked(); break;
         case 2: _t->on_decodeButton_clicked(); break;
+        /*case 3: _t->on_pushButton_2_clicked(); break;
+        case 4: _t->on_pushButton_3_clicked(); break;
+        case 5: _t->on_comboBox_activated((*reinterpret_cast< const QString(*)>(_a[1]))); break;*/
         case 6: _t->on_comboBox_currentIndexChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 7: _t->on_pushButton_4_clicked(); break;
         case 8: _t->on_ImportButton_clicked(); break;

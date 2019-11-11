@@ -108,6 +108,7 @@ public:
         intervalSpinBox->setObjectName(QString::fromUtf8("intervalSpinBox"));
         intervalSpinBox->setMinimum(10);
         intervalSpinBox->setMaximum(1000000);
+        intervalSpinBox->setSingleStep(10);
         intervalSpinBox->setValue(100);
 
         intervallLayout->addWidget(intervalSpinBox);

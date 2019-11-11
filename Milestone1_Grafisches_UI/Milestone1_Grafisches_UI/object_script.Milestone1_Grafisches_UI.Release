@@ -2,6 +2,9 @@ release/cryptographytab.o
 release/cryptowidget.o
 release/golwidget.o
 release/gameoflifetab.o
+release/cbild.o
+release/nbild.o
+release/static.o
 release/main.o
 release/mainwindow.o
 release/mytabpage.o

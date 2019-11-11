@@ -2,6 +2,9 @@ debug/cryptographytab.o
 debug/cryptowidget.o
 debug/golwidget.o
 debug/gameoflifetab.o
+debug/cbild.o
+debug/nbild.o
+debug/static.o
 debug/main.o
 debug/mainwindow.o
 debug/mytabpage.o

@@ -2,6 +2,7 @@
 #define CRYPTOGRAPHYTAB_H
 
 #include <QWidget>
+#include "kryptografie/nbild.h"
 
 namespace Ui {
 class cryptographytab;
@@ -15,7 +16,14 @@ public:
     explicit cryptographytab(QWidget *parent = nullptr);
     ~cryptographytab();
 
+    QString imageFileName = "";
+    QString keyFileName = "";
+    QString state = "encode";
+    NBild* main_bild;
+    NBild* key_bild;
+
 private slots:
+
     void on_encodeButton_clicked();
 
     void on_createKeyButton_clicked();
@@ -35,6 +43,8 @@ private slots:
     void on_ImportButton_clicked();
 
     void on_importbildbutton_clicked();
+
+    void on_pushButton_clicked();
 
 private:
     Ui::cryptographytab *ui;

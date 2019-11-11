@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_GolWidget_t {
-    QByteArrayData data[21];
-    char stringdata0[208];
+    QByteArrayData data[20];
+    char stringdata0[198];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -40,26 +40,25 @@ QT_MOC_LITERAL(4, 30, 7), // "painter"
 QT_MOC_LITERAL(5, 38, 9), // "drawCells"
 QT_MOC_LITERAL(6, 48, 10), // "clearPlane"
 QT_MOC_LITERAL(7, 59, 13), // "surroundCells"
-QT_MOC_LITERAL(8, 73, 9), // "short int"
-QT_MOC_LITERAL(9, 83, 6), // "xCoord"
-QT_MOC_LITERAL(10, 90, 6), // "yCoord"
-QT_MOC_LITERAL(11, 97, 10), // "evolveCell"
-QT_MOC_LITERAL(12, 108, 11), // "evolvePlane"
-QT_MOC_LITERAL(13, 120, 7), // "copyVec"
-QT_MOC_LITERAL(14, 128, 18), // "std::vector<short>"
-QT_MOC_LITERAL(15, 147, 4), // "from"
-QT_MOC_LITERAL(16, 152, 19), // "std::vector<short>&"
-QT_MOC_LITERAL(17, 172, 2), // "to"
-QT_MOC_LITERAL(18, 175, 9), // "randomize"
-QT_MOC_LITERAL(19, 185, 13), // "fillWithBlank"
-QT_MOC_LITERAL(20, 199, 8) // "printVec"
+QT_MOC_LITERAL(8, 73, 6), // "xCoord"
+QT_MOC_LITERAL(9, 80, 6), // "yCoord"
+QT_MOC_LITERAL(10, 87, 10), // "evolveCell"
+QT_MOC_LITERAL(11, 98, 11), // "evolvePlane"
+QT_MOC_LITERAL(12, 110, 7), // "copyVec"
+QT_MOC_LITERAL(13, 118, 18), // "std::vector<short>"
+QT_MOC_LITERAL(14, 137, 4), // "from"
+QT_MOC_LITERAL(15, 142, 19), // "std::vector<short>&"
+QT_MOC_LITERAL(16, 162, 2), // "to"
+QT_MOC_LITERAL(17, 165, 9), // "randomize"
+QT_MOC_LITERAL(18, 175, 13), // "fillWithBlank"
+QT_MOC_LITERAL(19, 189, 8) // "printVec"
 
     },
     "GolWidget\0drawGrid\0\0QPainter&\0painter\0"
     "drawCells\0clearPlane\0surroundCells\0"
-    "short int\0xCoord\0yCoord\0evolveCell\0"
-    "evolvePlane\0copyVec\0std::vector<short>\0"
-    "from\0std::vector<short>&\0to\0randomize\0"
+    "xCoord\0yCoord\0evolveCell\0evolvePlane\0"
+    "copyVec\0std::vector<short>\0from\0"
+    "std::vector<short>&\0to\0randomize\0"
     "fillWithBlank\0printVec"
 };
 #undef QT_MOC_LITERAL
@@ -82,21 +81,21 @@ static const uint qt_meta_data_GolWidget[] = {
        5,    1,   67,    2, 0x0a /* Public */,
        6,    0,   70,    2, 0x0a /* Public */,
        7,    2,   71,    2, 0x0a /* Public */,
-      11,    2,   76,    2, 0x0a /* Public */,
-      12,    0,   81,    2, 0x0a /* Public */,
-      13,    2,   82,    2, 0x0a /* Public */,
-      18,    0,   87,    2, 0x0a /* Public */,
-      19,    0,   88,    2, 0x0a /* Public */,
-      20,    0,   89,    2, 0x0a /* Public */,
+      10,    2,   76,    2, 0x0a /* Public */,
+      11,    0,   81,    2, 0x0a /* Public */,
+      12,    2,   82,    2, 0x0a /* Public */,
+      17,    0,   87,    2, 0x0a /* Public */,
+      18,    0,   88,    2, 0x0a /* Public */,
+      19,    0,   89,    2, 0x0a /* Public */,
 
  // slots: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
     QMetaType::Void, 0x80000000 | 3,    4,
     QMetaType::Void,
-    0x80000000 | 8, QMetaType::Int, QMetaType::Int,    9,   10,
-    0x80000000 | 8, QMetaType::Int, QMetaType::Int,    9,   10,
+    QMetaType::Short, QMetaType::Int, QMetaType::Int,    8,    9,
+    QMetaType::Short, QMetaType::Int, QMetaType::Int,    8,    9,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 14, 0x80000000 | 16,   15,   17,
+    QMetaType::Void, 0x80000000 | 13, 0x80000000 | 15,   14,   16,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -113,10 +112,10 @@ void GolWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         case 0: _t->drawGrid((*reinterpret_cast< QPainter(*)>(_a[1]))); break;
         case 1: _t->drawCells((*reinterpret_cast< QPainter(*)>(_a[1]))); break;
         case 2: _t->clearPlane(); break;
-        case 3: { short int _r = _t->surroundCells((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])));
-            if (_a[0]) *reinterpret_cast< short int*>(_a[0]) = std::move(_r); }  break;
-        case 4: { short int _r = _t->evolveCell((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])));
-            if (_a[0]) *reinterpret_cast< short int*>(_a[0]) = std::move(_r); }  break;
+        case 3: { short _r = _t->surroundCells((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])));
+            if (_a[0]) *reinterpret_cast< short*>(_a[0]) = std::move(_r); }  break;
+        case 4: { short _r = _t->evolveCell((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])));
+            if (_a[0]) *reinterpret_cast< short*>(_a[0]) = std::move(_r); }  break;
         case 5: _t->evolvePlane(); break;
         case 6: _t->copyVec((*reinterpret_cast< std::vector<short>(*)>(_a[1])),(*reinterpret_cast< std::vector<short>(*)>(_a[2]))); break;
         case 7: _t->randomize(); break;

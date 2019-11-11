@@ -7,7 +7,7 @@
 *****************************************************************************/
 
 #include <memory>
-#include "../../Milestone1_Grafisches_UI/cryptographytab.h"
+#include "../cryptographytab.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_cryptographytab_t {
-    QByteArrayData data[13];
-    char stringdata0[275];
+    QByteArrayData data[14];
+    char stringdata0[297];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -44,7 +44,8 @@ QT_MOC_LITERAL(8, 162, 4), // "arg1"
 QT_MOC_LITERAL(9, 167, 31), // "on_comboBox_currentIndexChanged"
 QT_MOC_LITERAL(10, 199, 23), // "on_pushButton_4_clicked"
 QT_MOC_LITERAL(11, 223, 23), // "on_ImportButton_clicked"
-QT_MOC_LITERAL(12, 247, 27) // "on_importbildbutton_clicked"
+QT_MOC_LITERAL(12, 247, 27), // "on_importbildbutton_clicked"
+QT_MOC_LITERAL(13, 275, 21) // "on_pushButton_clicked"
 
     },
     "cryptographytab\0on_encodeButton_clicked\0"
@@ -53,7 +54,8 @@ QT_MOC_LITERAL(12, 247, 27) // "on_importbildbutton_clicked"
     "on_pushButton_3_clicked\0on_comboBox_activated\0"
     "arg1\0on_comboBox_currentIndexChanged\0"
     "on_pushButton_4_clicked\0on_ImportButton_clicked\0"
-    "on_importbildbutton_clicked"
+    "on_importbildbutton_clicked\0"
+    "on_pushButton_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -63,7 +65,7 @@ static const uint qt_meta_data_cryptographytab[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      10,   14, // methods
+      11,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -71,16 +73,17 @@ static const uint qt_meta_data_cryptographytab[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   64,    2, 0x08 /* Private */,
-       3,    0,   65,    2, 0x08 /* Private */,
-       4,    0,   66,    2, 0x08 /* Private */,
-       5,    0,   67,    2, 0x08 /* Private */,
-       6,    0,   68,    2, 0x08 /* Private */,
-       7,    1,   69,    2, 0x08 /* Private */,
-       9,    1,   72,    2, 0x08 /* Private */,
-      10,    0,   75,    2, 0x08 /* Private */,
-      11,    0,   76,    2, 0x08 /* Private */,
-      12,    0,   77,    2, 0x08 /* Private */,
+       1,    0,   69,    2, 0x08 /* Private */,
+       3,    0,   70,    2, 0x08 /* Private */,
+       4,    0,   71,    2, 0x08 /* Private */,
+       5,    0,   72,    2, 0x08 /* Private */,
+       6,    0,   73,    2, 0x08 /* Private */,
+       7,    1,   74,    2, 0x08 /* Private */,
+       9,    1,   77,    2, 0x08 /* Private */,
+      10,    0,   80,    2, 0x08 /* Private */,
+      11,    0,   81,    2, 0x08 /* Private */,
+      12,    0,   82,    2, 0x08 /* Private */,
+      13,    0,   83,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -90,6 +93,7 @@ static const uint qt_meta_data_cryptographytab[] = {
     QMetaType::Void,
     QMetaType::Void, QMetaType::QString,    8,
     QMetaType::Void, QMetaType::QString,    8,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -106,10 +110,14 @@ void cryptographytab::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
         case 0: _t->on_encodeButton_clicked(); break;
         case 1: _t->on_createKeyButton_clicked(); break;
         case 2: _t->on_decodeButton_clicked(); break;
-        case 6: _t->on_comboBox_currentIndexChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        /*case 3: _t->on_pushButton_2_clicked(); break;
+        case 4: _t->on_pushButton_3_clicked(); break;
+        case 5: _t->on_comboBox_activated((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        */case 6: _t->on_comboBox_currentIndexChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 7: _t->on_pushButton_4_clicked(); break;
         case 8: _t->on_ImportButton_clicked(); break;
         case 9: _t->on_importbildbutton_clicked(); break;
+        case 10: _t->on_pushButton_clicked(); break;
         default: ;
         }
     }
@@ -144,13 +152,13 @@ int cryptographytab::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 10)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 10;
+        _id -= 11;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 10)
+        if (_id < 11)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 10;
+        _id -= 11;
     }
     return _id;
 }

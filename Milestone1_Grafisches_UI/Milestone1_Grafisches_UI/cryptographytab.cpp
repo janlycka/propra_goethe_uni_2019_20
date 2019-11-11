@@ -2,6 +2,8 @@
 #include "ui_cryptographytab.h"
 #include <iostream>
 #include <string.h>
+#include "kryptografie/nbild.h"
+#include "kryptografie/cbild.h"
 
 #include <QFileDialog>
 #include <QFile>
@@ -23,7 +25,7 @@ cryptographytab::cryptographytab(QWidget *parent) :
     //ui->planeWidthSpinBox->setValue(ui->golWidget->widthC);
     //ui->planeHeightSpinBox->setValue(ui->golWidget->heightC);
     //connect(evolveTimer, SIGNAL(timeout()), ui->golWidget, SLOT(evolvePlane()));
-    //connect(ui->clearButton, SIGNAL(clicked()), ui->golWidget,SLOT(clearPlane()));
+    //connect(ui->importbildbutton, SIGNAL(clicked()), ui->Cryptowidget,SLOT(populateVector(main_bild)));
     //connect(ui->evolveButton, SIGNAL(clicked()), ui->golWidget, SLOT(evolvePlane()));
 }
 
@@ -34,21 +36,73 @@ cryptographytab::~cryptographytab()
 
 void cryptographytab::on_encodeButton_clicked()
 {
-    //encode
+    if(state=="encode"){
+        CBild* cbild = new CBild();
+        cbild->encode_image(main_bild, key_bild);
+        //cbild->export_image(arg2);
+        ui->Cryptowidget_3->populateVector(cbild->export_nbild());
+    }
+    if(state=="decode"){
+        CBild* bild1 = new CBild();
+        bild1->import_image(imageFileName.toStdString());
+        ui->Cryptowidget->populateVector(bild1->export_nbild());
+
+        NBild* key = new NBild();
+        key->import_image(keyFileName.toStdString());
+        ui->Cryptowidget_2->populateVector(key);
+
+        NBild* nbild = bild1->decode_image(bild1, key);
+        ui->Cryptowidget_3->populateVector(nbild);
+
+        //nbild->export_image(arg3);
+    }
+    if(state=="overlay"){
+        NBild* bild1 = new NBild();
+        bild1->import_image(imageFileName.toStdString());
+
+        NBild* bild2 = new NBild();
+        bild2->import_image(keyFileName.toStdString());
+
+        bild2->paste_over(bild1, bild2);
+        ui->Cryptowidget_3->populateVector(bild2);
+
+        //saveTwoOverlainImagesEncodedWithASingleKey(bild1, bild2, arg3);
+    }
 }
 
 void cryptographytab::on_createKeyButton_clicked()
 {
-    //creade key
+    //create key
+    QString saveKey = QFileDialog::getSaveFileName(this,
+        tr("Save Key"), "/", tr("Image Files (*.txt)"));
+
+    keyFileName = saveKey;
+
+    int x = main_bild->width;
+    int y = main_bild->height;
+
+        bool** ranBild = new bool*[y];//={};
+        for(int a=0; a<y; a++){
+            ranBild[a] = new bool[x];
+        }
+
+        for (int i=0;i<y;i++){
+            for (int j=0; j<x;j++){
+              ranBild[i][j]=rand()%2;
+     //       cout << ranBild[i][j] << " ";
+            }
+        }
+
+        key_bild = new NBild(ranBild, x, y);
+        key_bild->export_image(saveKey.toStdString());
+
+        ui->Cryptowidget_2->populateVector(key_bild);
 }
 
 void cryptographytab::on_decodeButton_clicked()
 {
     //decode
 }
-
-QString imageFileName = "";
-QString keyFileName = "";
 
 void cryptographytab::on_comboBox_currentIndexChanged(const QString &arg1)
 {
@@ -69,6 +123,7 @@ void cryptographytab::on_comboBox_currentIndexChanged(const QString &arg1)
     }
 
     ui->label_4->setText(arg1);
+    state = arg1;
 }
 
 void cryptographytab::on_pushButton_4_clicked()
@@ -78,8 +133,14 @@ void cryptographytab::on_pushButton_4_clicked()
 
 void cryptographytab::on_ImportButton_clicked()
 {
-    QString keyFileName = QFileDialog::getOpenFileName(this,
+    keyFileName = QFileDialog::getOpenFileName(this,
         tr("Open Key"), "/", tr("Image Files (*.txt)"));
+
+    key_bild = new NBild();
+    key_bild->import_image(keyFileName.toStdString());
+    ui->Cryptowidget_2->populateVector(key_bild);
+
+    ui->label_6->setText(keyFileName);
 }
 
 void cryptographytab::on_importbildbutton_clicked()
@@ -87,4 +148,57 @@ void cryptographytab::on_importbildbutton_clicked()
     //import NBild
     imageFileName = QFileDialog::getOpenFileName(this,
         tr("Open Image"), "/", tr("Image Files (*.txt)"));
+
+    main_bild = new NBild();
+    main_bild->import_image(imageFileName.toStdString());
+
+    ui->Cryptowidget->populateVector(main_bild);
+
+    ui->label_5->setText(imageFileName);
+    //cellVec[5]=true;
+}
+
+void cryptographytab::on_pushButton_clicked()
+{
+    //export NBild
+    QString saveFile = QFileDialog::getSaveFileName(this,
+        tr("Save Image"), "/", tr("Image Files (*.txt)"));
+
+    if(state=="encode"){
+        NBild* bild = new NBild();
+        bild->import_image(imageFileName.toStdString());
+
+        NBild* key = new NBild();
+        key->import_image(keyFileName.toStdString());
+
+        CBild* cbild = new CBild();
+        cbild->encode_image(bild, key);
+        cbild->export_image(saveFile.toStdString());
+
+
+        ui->label_8->setText(saveFile);
+    }
+    if(state=="decode"){
+        CBild* bild1 = new CBild();
+        bild1->import_image(imageFileName.toStdString());
+
+        NBild* key = new NBild();
+        key->import_image(keyFileName.toStdString());
+
+        NBild* nbild = bild1->decode_image(bild1, key);
+        nbild->export_image(saveFile.toStdString());
+    }
+    if(state=="overlay"){
+        NBild* bild1 = new NBild();
+        bild1->import_image(imageFileName.toStdString());
+
+        NBild* bild2 = new NBild();
+        bild2->import_image(keyFileName.toStdString());
+        bild2->paste_over(bild1, bild2);
+
+        bild2->export_image(saveFile.toStdString());
+
+        //saveTwoOverlainImagesEncodedWithASingleKey(bild1, bild2, arg3);
+    }
+
 }
