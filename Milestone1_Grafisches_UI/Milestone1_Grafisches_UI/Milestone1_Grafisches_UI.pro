@@ -22,7 +22,8 @@ SOURCES += \
     gameoflifetab.cpp \
     main.cpp \
     mainwindow.cpp \
-    mytabpage.cpp
+    mytabpage.cpp \
+    visualcripto.cpp
 
 HEADERS += \
     cryptographytab.h \
@@ -30,13 +31,15 @@ HEADERS += \
     golwidget.h \
     gameoflifetab.h \
     mainwindow.h \
-    mytabpage.h
+    mytabpage.h \
+    visualcripto.h
 
 FORMS += \
     cryptographytab.ui \
     gameoflifetab.ui \
     mainwindow.ui \
-    mytabpage.ui
+    mytabpage.ui \
+    visualcripto.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

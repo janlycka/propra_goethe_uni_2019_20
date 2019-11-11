@@ -1,4 +1,5 @@
 #include "cryptowidget.h"
+#include "cryptographytab.h"
 #include <iostream>
 #include <QMouseEvent>
 #include <QColor>
@@ -7,13 +8,17 @@
 
 cryptowidget::cryptowidget(QWidget *parent) :
     QWidget(parent),
-    widthC(5),
-    heightC(5),
-    pixel_size(5)
+    widthC(304),
+    heightC(89),
+    pixel_size(4)
+
+
 
 {
+ //   QString imageFileName1 = ui-> cryptographytab->imageFileName;
     for (int i = 0; i < widthC*heightC; i++) {
-        cellVec.push_back(0);
+        QChar n = imageFileName.data()[i];
+        cellVec.push_back(n);
     }
     //ui->setupUi(this);
 }
@@ -35,11 +40,11 @@ void cryptowidget::paintEvent(QPaintEvent *event)
 
 void cryptowidget::drawCells(QPainter &painter)
 {
-    QPen grayPen(QColor("gray"));
-    painter.setPen(grayPen);
+    QPen whitePen(QColor("white"));
+    painter.setPen(whitePen);
     for (int x = 0; x < widthC; x++){
         for (int y = 0; y < heightC; y++){
-            if (cellVec[x+y*heightC] == true){
+            if (cellVec[x+y*heightC] == '1'){
                 QRect r(x*pixel_size, y*pixel_size, pixel_size, pixel_size);
                 painter.fillRect(r, QColor("black"));
                 painter.drawRect(r);

@@ -5,9 +5,11 @@ debug/gameoflifetab.o
 debug/main.o
 debug/mainwindow.o
 debug/mytabpage.o
+debug/visualcripto.o
 debug/moc_cryptographytab.o
 debug/moc_cryptowidget.o
 debug/moc_golwidget.o
 debug/moc_gameoflifetab.o
 debug/moc_mainwindow.o
 debug/moc_mytabpage.o
+debug/moc_visualcripto.o

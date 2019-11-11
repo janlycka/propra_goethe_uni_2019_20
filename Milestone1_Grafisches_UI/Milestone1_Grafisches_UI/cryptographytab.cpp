@@ -34,7 +34,13 @@ cryptographytab::~cryptographytab()
 
 void cryptographytab::on_encodeButton_clicked()
 {
-    //encode
+    if (ui->encodeButton->text()== "Encode"){
+        ui->label_4->setText("Decode") ;
+    } else if (ui->encodeButton->text()== "Decode"){
+        ui->label_4->setText("Decode") ;
+    }  else if (ui->encodeButton->text()== "Overlay"){
+        ui->label_4->setText("Overlay") ;
+    }
 }
 
 void cryptographytab::on_createKeyButton_clicked()
@@ -49,7 +55,11 @@ void cryptographytab::on_decodeButton_clicked()
 
 QString imageFileName = "";
 QString keyFileName = "";
+/*
+ *Import file into the array
+ */
 
+//std::vector<int> bildArray;
 void cryptographytab::on_comboBox_currentIndexChanged(const QString &arg1)
 {
     if(arg1 == "encode"){

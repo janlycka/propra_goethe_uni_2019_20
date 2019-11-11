@@ -20,7 +20,9 @@ public:
     int widthC;
     int heightC;
     int pixel_size;
-    std::vector<short> cellVec;
+    std::vector<QChar> cellVec;
+    QString imageFileName = "";
+    QString keyFileName = "";
     //std::vector<short> updatedVec;
 
 

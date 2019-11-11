@@ -80,7 +80,7 @@
    <property name="geometry">
     <rect>
      <x>120</x>
-     <y>200</y>
+     <y>210</y>
      <width>55</width>
      <height>16</height>
     </rect>
@@ -102,11 +102,21 @@
     <string>encrypted picture</string>
    </property>
   </widget>
+  <widget class="cryptowidget" name="Cryptowidget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>50</y>
+     <width>201</width>
+     <height>121</height>
+    </rect>
+   </property>
+  </widget>
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>420</x>
-     <y>330</y>
+     <x>390</x>
+     <y>320</y>
      <width>55</width>
      <height>16</height>
     </rect>
@@ -115,13 +125,13 @@
     <string>TextLabel</string>
    </property>
   </widget>
-  <widget class="cryptowidget" name="Cryptowidget" native="true">
+  <widget class="cryptowidget" name="widget" native="true">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>70</y>
-     <width>211</width>
-     <height>121</height>
+     <x>40</x>
+     <y>250</y>
+     <width>201</width>
+     <height>141</height>
     </rect>
    </property>
   </widget>
@@ -130,7 +140,7 @@
   <customwidget>
    <class>cryptowidget</class>
    <extends>QWidget</extends>
-   <header>cryptowidget.h</header>
+   <header location="global">cryptowidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

@@ -16,7 +16,7 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
-#include "cryptowidget.h"
+#include <cryptowidget.h>
 
 QT_BEGIN_NAMESPACE
 
@@ -34,8 +34,9 @@ public:
     QLabel *label;
     QLabel *label_2;
     QLabel *label_3;
-    QLabel *label_4;
     cryptowidget *Cryptowidget;
+    QLabel *label_4;
+    cryptowidget *widget;
 
     void setupUi(QWidget *cryptographytab)
     {
@@ -83,16 +84,19 @@ public:
         label->setGeometry(QRect(90, 20, 91, 16));
         label_2 = new QLabel(cryptographytab);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(120, 200, 55, 16));
+        label_2->setGeometry(QRect(120, 210, 55, 16));
         label_3 = new QLabel(cryptographytab);
         label_3->setObjectName(QString::fromUtf8("label_3"));
         label_3->setGeometry(QRect(380, 30, 101, 16));
-        label_4 = new QLabel(cryptographytab);
-        label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setGeometry(QRect(420, 330, 55, 16));
         Cryptowidget = new cryptowidget(cryptographytab);
         Cryptowidget->setObjectName(QString::fromUtf8("Cryptowidget"));
-        Cryptowidget->setGeometry(QRect(60, 70, 211, 121));
+        Cryptowidget->setGeometry(QRect(40, 50, 201, 121));
+        label_4 = new QLabel(cryptographytab);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+        label_4->setGeometry(QRect(390, 320, 55, 16));
+        widget = new cryptowidget(cryptographytab);
+        widget->setObjectName(QString::fromUtf8("widget"));
+        widget->setGeometry(QRect(40, 250, 201, 141));
 
         retranslateUi(cryptographytab);
 
