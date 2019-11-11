@@ -95,6 +95,11 @@ void cryptographytab::on_createKeyButton_clicked()
         key_bild->export_image(saveKey.toStdString());
 
         ui->Cryptowidget_2->populateVector(key_bild);
+
+        if(key_bild != NULL && main_bild!= NULL){
+            ui->encodeButton->setEnabled(true);
+            ui->pushButton->setEnabled(true);
+        }
 }
 
 void cryptographytab::on_decodeButton_clicked()
@@ -120,6 +125,10 @@ void cryptographytab::on_comboBox_currentIndexChanged(const QString &arg1)
         ui->encodeButton->setText("Overlay");
     }
 
+    ui->encodeButton->setEnabled(false);
+    ui->createKeyButton->setEnabled(false);
+    ui->pushButton->setEnabled(false);
+
     ui->label_4->setText(arg1);
     state = arg1;
 }
@@ -139,6 +148,12 @@ void cryptographytab::on_ImportButton_clicked()
     ui->Cryptowidget_2->populateVector(key_bild);
 
     ui->label_6->setText(keyFileName);
+
+
+    if(key_bild != NULL && main_bild!= NULL){
+        ui->encodeButton->setEnabled(true);
+        ui->pushButton->setEnabled(true);
+    }
 }
 
 void cryptographytab::on_importbildbutton_clicked()
@@ -154,6 +169,13 @@ void cryptographytab::on_importbildbutton_clicked()
 
     ui->label_5->setText(imageFileName);
     //cellVec[5]=true;
+    if(main_bild != NULL){
+    ui->createKeyButton->setEnabled(true);
+}
+    if(key_bild != NULL && main_bild!= NULL){
+        ui->encodeButton->setEnabled(true);
+        ui->pushButton->setEnabled(true);
+    }
 }
 
 void cryptographytab::on_pushButton_clicked()

@@ -1215,7 +1215,6 @@ release/cryptographytab.o: cryptographytab.cpp cryptographytab.h \
 		D:/Qt/Qt5.13.1/5.13.1/mingw73_64/include/QtWidgets/QPushButton \
 		D:/Qt/Qt5.13.1/5.13.1/mingw73_64/include/QtWidgets/qpushbutton.h \
 		D:/Qt/Qt5.13.1/5.13.1/mingw73_64/include/QtWidgets/qabstractbutton.h \
-		D:/Qt/Qt5.13.1/5.13.1/mingw73_64/include/QtWidgets/QVBoxLayout \
 		cryptowidget.h \
 		D:/Qt/Qt5.13.1/5.13.1/mingw73_64/include/QtGui/QPainter \
 		D:/Qt/Qt5.13.1/5.13.1/mingw73_64/include/QtGui/qpainter.h \

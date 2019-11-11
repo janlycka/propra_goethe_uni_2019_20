@@ -15,7 +15,6 @@
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 #include "cryptowidget.h"
 
@@ -24,9 +23,6 @@ QT_BEGIN_NAMESPACE
 class Ui_cryptographytab
 {
 public:
-    QWidget *verticalLayoutWidget;
-    QVBoxLayout *verticalLayout;
-    QPushButton *encodeButton;
     QLabel *label;
     QLabel *label_2;
     QLabel *label_3;
@@ -45,23 +41,13 @@ public:
     QLabel *label_8;
     cryptowidget *Cryptowidget_2;
     cryptowidget *Cryptowidget_3;
+    QPushButton *encodeButton;
 
     void setupUi(QWidget *cryptographytab)
     {
         if (cryptographytab->objectName().isEmpty())
             cryptographytab->setObjectName(QString::fromUtf8("cryptographytab"));
         cryptographytab->resize(926, 791);
-        verticalLayoutWidget = new QWidget(cryptographytab);
-        verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(610, 230, 141, 111));
-        verticalLayout = new QVBoxLayout(verticalLayoutWidget);
-        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        verticalLayout->setContentsMargins(0, 0, 0, 0);
-        encodeButton = new QPushButton(verticalLayoutWidget);
-        encodeButton->setObjectName(QString::fromUtf8("encodeButton"));
-
-        verticalLayout->addWidget(encodeButton);
-
         label = new QLabel(cryptographytab);
         label->setObjectName(QString::fromUtf8("label"));
         label->setGeometry(QRect(20, 10, 91, 16));
@@ -136,6 +122,10 @@ public:
         Cryptowidget_3 = new cryptowidget(cryptographytab);
         Cryptowidget_3->setObjectName(QString::fromUtf8("Cryptowidget_3"));
         Cryptowidget_3->setGeometry(QRect(20, 380, 421, 331));
+        encodeButton = new QPushButton(cryptographytab);
+        encodeButton->setObjectName(QString::fromUtf8("encodeButton"));
+        encodeButton->setEnabled(false);
+        encodeButton->setGeometry(QRect(680, 230, 221, 71));
 
         retranslateUi(cryptographytab);
 
@@ -145,7 +135,6 @@ public:
     void retranslateUi(QWidget *cryptographytab)
     {
         cryptographytab->setWindowTitle(QCoreApplication::translate("cryptographytab", "Form", nullptr));
-        encodeButton->setText(QCoreApplication::translate("cryptographytab", "Choose Task", nullptr));
         label->setText(QCoreApplication::translate("cryptographytab", "Original picture", nullptr));
         label_2->setText(QCoreApplication::translate("cryptographytab", "Key", nullptr));
         label_3->setText(QCoreApplication::translate("cryptographytab", "encrypted picture", nullptr));
@@ -158,6 +147,7 @@ public:
         label_6->setText(QCoreApplication::translate("cryptographytab", "TextLabel", nullptr));
         label_7->setText(QCoreApplication::translate("cryptographytab", "TextLabel", nullptr));
         label_8->setText(QCoreApplication::translate("cryptographytab", "TextLabel", nullptr));
+        encodeButton->setText(QCoreApplication::translate("cryptographytab", "Choose Task", nullptr));
     } // retranslateUi
 
 };
