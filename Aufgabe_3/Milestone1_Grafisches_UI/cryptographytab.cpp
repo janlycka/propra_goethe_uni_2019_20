@@ -102,11 +102,6 @@ void cryptographytab::on_createKeyButton_clicked()
         }
 }
 
-void cryptographytab::on_decodeButton_clicked()
-{
-    //decode
-}
-
 void cryptographytab::on_comboBox_currentIndexChanged(const QString &arg1)
 {
     if(arg1 == "encode"){
@@ -140,11 +135,6 @@ void cryptographytab::on_comboBox_currentIndexChanged(const QString &arg1)
 
     ui->label_4->setText(arg1);
     state = arg1;
-}
-
-void cryptographytab::on_pushButton_4_clicked()
-{
-    ui->label_4->setText(ui->comboBox->currentText());
 }
 
 void cryptographytab::on_ImportButton_clicked()

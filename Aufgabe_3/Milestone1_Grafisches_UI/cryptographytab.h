@@ -30,17 +30,7 @@ private slots:
 
     void on_createKeyButton_clicked();
 
-    void on_decodeButton_clicked();
-
-    void on_pushButton_2_clicked();
-
-    void on_pushButton_3_clicked();
-
-    void on_comboBox_activated(const QString &arg1);
-
     void on_comboBox_currentIndexChanged(const QString &arg1);
-
-    void on_pushButton_4_clicked();
 
     void on_ImportButton_clicked();
 
