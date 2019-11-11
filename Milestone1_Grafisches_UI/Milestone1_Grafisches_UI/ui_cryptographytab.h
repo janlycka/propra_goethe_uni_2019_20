@@ -70,10 +70,10 @@ public:
         label_2->setGeometry(QRect(340, 10, 55, 16));
         label_3 = new QLabel(cryptographytab);
         label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setGeometry(QRect(30, 340, 101, 16));
+        label_3->setGeometry(QRect(30, 360, 101, 16));
         Cryptowidget = new cryptowidget(cryptographytab);
         Cryptowidget->setObjectName(QString::fromUtf8("Cryptowidget"));
-        Cryptowidget->setGeometry(QRect(20, 40, 311, 291));
+        Cryptowidget->setGeometry(QRect(20, 40, 311, 321));
         gridLayoutWidget = new QWidget(cryptographytab);
         gridLayoutWidget->setObjectName(QString::fromUtf8("gridLayoutWidget"));
         gridLayoutWidget->setGeometry(QRect(670, 10, 251, 171));
@@ -132,10 +132,10 @@ public:
 
         Cryptowidget_2 = new cryptowidget(cryptographytab);
         Cryptowidget_2->setObjectName(QString::fromUtf8("Cryptowidget_2"));
-        Cryptowidget_2->setGeometry(QRect(340, 40, 311, 291));
+        Cryptowidget_2->setGeometry(QRect(340, 40, 311, 321));
         Cryptowidget_3 = new cryptowidget(cryptographytab);
         Cryptowidget_3->setObjectName(QString::fromUtf8("Cryptowidget_3"));
-        Cryptowidget_3->setGeometry(QRect(20, 360, 421, 291));
+        Cryptowidget_3->setGeometry(QRect(20, 380, 421, 331));
 
         retranslateUi(cryptographytab);
 

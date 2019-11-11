@@ -37,24 +37,18 @@ cryptographytab::~cryptographytab()
 void cryptographytab::on_encodeButton_clicked()
 {
     if(state=="encode"){
-        CBild* cbild = new CBild();
-        cbild->encode_image(main_bild, key_bild);
-        //cbild->export_image(arg2);
-        ui->Cryptowidget_3->populateVector(cbild->export_nbild());
+        encoded_bild = new CBild();
+        encoded_bild->encode_image(main_bild, key_bild);
+        ui->Cryptowidget_3->populateVector(encoded_bild->export_nbild());
     }
     if(state=="decode"){
-        CBild* bild1 = new CBild();
-        bild1->import_image(imageFileName.toStdString());
-        ui->Cryptowidget->populateVector(bild1->export_nbild());
+        encoded_bild = new CBild();
+        encoded_bild->import_image(imageFileName.toStdString());
 
-        NBild* key = new NBild();
-        key->import_image(keyFileName.toStdString());
-        ui->Cryptowidget_2->populateVector(key);
-
-        NBild* nbild = bild1->decode_image(bild1, key);
-        ui->Cryptowidget_3->populateVector(nbild);
-
-        //nbild->export_image(arg3);
+        //ui->Cryptowidget->populateVector(encoded_bild->export_nbild());
+        //ui->Cryptowidget_2->populateVector(key_bild);
+        main_bild = encoded_bild->decode_image(encoded_bild, key_bild);
+        ui->Cryptowidget_3->populateVector(main_bild);
     }
     if(state=="overlay"){
         NBild* bild1 = new NBild();
@@ -163,20 +157,10 @@ void cryptographytab::on_pushButton_clicked()
     //export NBild
     QString saveFile = QFileDialog::getSaveFileName(this,
         tr("Save Image"), "/", tr("Image Files (*.txt)"));
+    ui->label_8->setText(saveFile);
 
     if(state=="encode"){
-        NBild* bild = new NBild();
-        bild->import_image(imageFileName.toStdString());
-
-        NBild* key = new NBild();
-        key->import_image(keyFileName.toStdString());
-
-        CBild* cbild = new CBild();
-        cbild->encode_image(bild, key);
-        cbild->export_image(saveFile.toStdString());
-
-
-        ui->label_8->setText(saveFile);
+        encoded_bild->export_image(saveFile.toStdString());
     }
     if(state=="decode"){
         CBild* bild1 = new CBild();

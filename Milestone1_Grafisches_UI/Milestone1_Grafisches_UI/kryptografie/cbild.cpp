@@ -48,7 +48,10 @@ void CBild::import_image(string fileName){
 
 // export data to file
 void CBild::export_image(string fileName){
+
     ofstream fout(fileName);
+    if (fout.is_open())
+      {
     for(int x=0; x<this->height; x++){
         //das CBild enthält ein array: bool[4], wobei dessen Elementenpaare [1,2], [3,4] jeweils 2 Linien im verschluesselten Bild vertreten. Darum 2 Durchlaeufe
         for(int y=0; y<this->width; y++){
@@ -63,6 +66,7 @@ void CBild::export_image(string fileName){
         fout << endl;
     }
     fout.close();
+    }
 }
 
 // export data to NBild

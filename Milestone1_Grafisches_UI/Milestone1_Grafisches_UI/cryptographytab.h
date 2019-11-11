@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "kryptografie/nbild.h"
+#include "kryptografie/cbild.h"
 
 namespace Ui {
 class cryptographytab;
@@ -21,6 +22,7 @@ public:
     QString state = "encode";
     NBild* main_bild;
     NBild* key_bild;
+    CBild* encoded_bild;
 
 private slots:
 
