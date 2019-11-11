@@ -110,16 +110,25 @@ void cryptographytab::on_decodeButton_clicked()
 void cryptographytab::on_comboBox_currentIndexChanged(const QString &arg1)
 {
     if(arg1 == "encode"){
+        ui->label->setText("Original Picture");
+        ui->label_2->setText("key");
+        ui->label_3->setText("Ercrypted Picture");
         ui->ImportButton->setText("Load Key");
         ui->importbildbutton->setText("Load Image");
         ui->encodeButton->setText("Encode");
 
     } else if(arg1 == "decode"){
+        ui->label->setText("Ercrypted Picture");
+        ui->label_2->setText("key");
+        ui->label_3->setText("Decrypted Picture");
         ui->ImportButton->setText("Load Key");
         ui->importbildbutton->setText("Load Image");
         ui->encodeButton->setText("decode");
 
     } else if(arg1 == "overlay"){
+        ui->label->setText("Picture 1");
+        ui->label_2->setText("Picture 2");
+        ui->label_3->setText("Overlaid Pictures (white-biased)");
         ui->ImportButton->setText("Load Image 2");
         ui->importbildbutton->setText("Load Image 1");
         ui->encodeButton->setText("Overlay");
