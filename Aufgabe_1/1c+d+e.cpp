@@ -31,6 +31,15 @@ public:
         }
     }
 
+    /* Fills the vector 'current' with 0's.
+     */
+    void fill0s(vector<short>& arr) {
+        current.clear();
+        for (int i = 0; i < height * width; i++) {
+            arr.push_back(0);
+        }
+    }
+
     /* Prints the arr(vector<short>) to the console as a matrix, depending on the user's choice of width and height.
      */
     void printA(vector<short> arr) {
@@ -267,7 +276,7 @@ int main(){
 
     // Creation of a default automaton.
     Automaton aut;
-    aut.fillRand(aut.current);
+    aut.fill0s(aut.current);
 
     // Introduction
     cout << "\nWelcome to Game of Life!\n"
@@ -294,6 +303,7 @@ int main(){
                  << "print: Print the automaton to the console.\n"
                  << "resize: Change the size of the automaton.\n"
                  << "insert: Choose a single cell through its coordinates and manually change its state (0 or 1).\n"
+                 << "invert: Changes a cells' state through its coordinates.\n"
                  << "random: Give the automaton new random numbers for each of its cells.\n"
                  << "evolve: Evolve the automaton.\n"
                  << "import: Import a text file.\n"
@@ -340,7 +350,7 @@ int main(){
                         validNumber = true;
                         aut.height = stoll(newHeight);
                         // Automaton is filled so that when size is changed from smaller to larger no bug will occur
-                        aut.fillRand(aut.current);
+                        aut.fill0s(aut.current);
                     }
                 }
                 else{cout << "\nThis is not a valid height. Choose a natural number >0.\n";}
@@ -397,6 +407,39 @@ int main(){
             cout << endl;
             aut.printA(aut.current);
             cout << endl;
+        }
+
+        else if (userInput == "invert"){
+
+            validNumber = false;
+
+            while (validNumber == false){
+            cout << "\nType in the x coordinate of the chosen cell: \n>>> ";
+            cin >> xInput;
+            cout << "\nType in the y coordinate of the chosen cell: \n>>> ";
+            cin >> yInput;
+
+            // Program checks whether the user input is an integer number and not e.g. string or float
+            if (isParam(yInput) && isParam(xInput)){
+
+                // Program checks whether the numbers are within the plane (exist as coordinates)
+                if ((0 < stoll(xInput)) && (stoll(xInput)< aut.width + 1) && (0 < stoll(yInput)) && (stoll(yInput) < aut.height + 1)){
+                        validNumber = true;
+                        if ((aut.current[stoll(xInput)-1 + (stoll(yInput)-1) * aut.width]) == 1){
+                            aut.insert(stoll(xInput)-1, stoll(yInput)-1, 0);
+                        }
+                        else {aut.insert(stoll(xInput)-1, stoll(yInput)-1, 1);}
+
+                }
+                else {cout << "\nThe typed in coordinates do not exist.";}
+
+            }
+            else {cout << "\nThe typed in coordinates do not exist.";}
+        }
+        cout << endl;
+        aut.printA(aut.current);
+        cout << endl;
+
         }
 
         else if (userInput == "print"){
