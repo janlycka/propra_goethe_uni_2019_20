@@ -296,7 +296,7 @@ int main(){
         cout << ">>> ";
         cin >> userInput;
 
-       // Below the nine or rather ten input cases are listed.
+       // Below the ten or rather eleven input cases are listed.
 
         if (userInput == "help"){
             cout << "\nAvailable commands:\n"
